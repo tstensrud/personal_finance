@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+{%block title%}Sign up for Personal finance{% endblock %}
+{% block header %}Sign on up! :-){% endblock %}
+{% block content %}
+<form method="POST">
+    <h3 align="center">Sign up</h3>
+    <div align="center">
+        email: <input type="email", id="email", name="email", placeholder="Enter email">
+        <br>
+        name: <input type="text", id="firstName", name="firstName" placeholder="Enter first name">
+        <br>
+        password: <input type="password", id="password", name="password">
+        <br>
+        re-type password: <input type="password", id="password_re" name="password_re">
+        <br>
+        <button type="submit">Sign up</button>
+    </div>
+</form>
+{% endblock %}
