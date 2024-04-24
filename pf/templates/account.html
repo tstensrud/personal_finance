@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+{%block title%}Personal finance{% endblock %}
+{% block content %}
+    <h1>Settings</h1>
+    <p>
+        <h2>User information</h2>
+    </p>
+    <p>
+        User name: {{user.first_name }} {{user.last_name }}
+        <br>
+        Email: {{ user.email }}
+        <br>
+        Password: {{ user.password }}
+    </p>
+{% endblock %}
