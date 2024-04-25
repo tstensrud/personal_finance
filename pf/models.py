@@ -5,9 +5,7 @@ from sqlalchemy.sql import func
 class Stocks(db.Model):
     user_id = db.Column(db.Integer, db.ForeignKey('user.id'))
     id = db.Column(db.Integer, primary_key=True)
-    ticker = db.Column(db.String(5))
-    name = db.Column(db.String(100))
-    value = db.Column(db.Integer)
+    api_url = db.Column(db.String(100))
 
 
 class User(db.Model, UserMixin):

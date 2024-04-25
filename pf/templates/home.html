@@ -3,11 +3,11 @@
 {% block header %}WELCOME TO PERSONAL FINANCE {% endblock %}
 
 {%block content %}
-    <h1>Home page for {{ user.first_name }}</h1>
+    <h2>Home page for {{ user.first_name }}</h1>
     <div class="title-group mb-3">
         <h1 class="h2 mb-0">Summary</h1>
     
-        <small class="text-muted">Hello Thomas, welcome back!</small>
+        <small class="text-muted">Hello {{user.first_name}}, welcome back!</small>
     </div>
     
     <div class="row my-4">
