@@ -20,8 +20,8 @@ function NavPanel() {
         {text: "Other assets", url: "assets", svg: <AssetsIcon activeIndex={activeIndex} />},
         {text: "Debts", url: "debts", svg: <DebtsIcon activeIndex={activeIndex} />},
         {text: "Spending plan", url: "plan", svg: <SpendingIcon activeIndex={activeIndex} />},
-    ]
-
+    ];
+    
     return (
         <div className="flex flex-col w-full">
             <div className="flex flex-col h-20 items-center justify-center">
@@ -34,7 +34,7 @@ function NavPanel() {
             </div>
             {
                 menuItems.map((item, index) => (
-                    <NavItem key={index} text={item.text} url={item.url} activeIndex={activeIndex} svg={item.svg && React.cloneElement(item.svg, {index})} />
+                    <NavItem key={index} index={index} text={item.text} url={item.url} setActiveIndex={setActiveIndex} activeIndex={activeIndex} svg={item.svg && React.cloneElement(item.svg, {index})} />
                 ))
             }
         </div>
