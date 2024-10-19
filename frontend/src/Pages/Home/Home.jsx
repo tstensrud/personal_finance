@@ -1,7 +1,8 @@
 function PersonalFinance() {
     return (
-        <>
-        </>
+        <div>
+            Home
+        </div>
     );
 }
 

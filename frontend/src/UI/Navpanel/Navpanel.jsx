@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 
-
+// Components
 import NavItem from './NavItem';
 
 // Navitem SVGs
@@ -10,33 +10,52 @@ import StocksIcon from '../../assets/menusvgs/StocksIcon';
 import AssetsIcon from '../../assets/menusvgs/AssetsIcon';
 import DebtsIcon from '../../assets/menusvgs/DebtsIcon';
 import SpendingIcon from '../../assets/menusvgs/SpendingIcon';
+import CollapseMenuItem from './CollapseMenuItem';
 
-function NavPanel() {
-    const [activeIndex, setActiveIndex] = useState(-1);
+function NavPanel({ showMenu, setShowMenu, menuPinned, setMenuPinned, setIsMenuAnimationInProgress }) {
+    const [activeIndex, setActiveIndex] = useState(0);
 
     const menuItems = [
-        {text: "Home", url: "home", svg: <HomeIcon activeIndex={activeIndex} />},
-        {text: "Stocks", url: "stocks", svg: <StocksIcon activeIndex={activeIndex} />},
-        {text: "Other assets", url: "assets", svg: <AssetsIcon activeIndex={activeIndex} />},
-        {text: "Debts", url: "debts", svg: <DebtsIcon activeIndex={activeIndex} />},
-        {text: "Spending plan", url: "plan", svg: <SpendingIcon activeIndex={activeIndex} />},
+        { text: "Home", url: "home", svg: <HomeIcon activeIndex={activeIndex} /> },
+        { text: "Stocks", url: "stocks", svg: <StocksIcon activeIndex={activeIndex} /> },
+        { text: "Other assets", url: "assets", svg: <AssetsIcon activeIndex={activeIndex} /> },
+        { text: "Debts", url: "debts", svg: <DebtsIcon activeIndex={activeIndex} /> },
+        { text: "Spending plan", url: "spending", svg: <SpendingIcon activeIndex={activeIndex} /> },
     ];
+
+    const handlePinMenuClick = (e) => {
+        e.preventDefault();
+        if (menuPinned) {
+            setIsMenuAnimationInProgress(true);
+            setMenuPinned(false);
+            setShowMenu(false);
+        }
+        else if (!menuPinned) {
+            setMenuPinned(true);
+            setShowMenu(true);
+        }
+    }
     
     return (
-        <div className="flex flex-col w-full">
-            <div className="flex flex-col h-20 items-center justify-center">
-                <div className="w-full justify-center flex items-center">
+        <div className="flex flex-col w-full h-full bg-tertiary-color rounded-lg">
+            <div className={`flex flex-col h-20 items-center justify-center`}>
+                <div className={`justify-center h-full flex items-center`}>
                     <AppIcon />
                 </div>
-                <div className="flex w-full justify-center text-primary-color pt-2">
-                    Personal finance
+            </div>
+
+            <div className={`flex flex-col items-center pl-2 pr-2 `}>
+                {
+                    menuItems.map((item, index) => (
+                        <NavItem lastIndex={index === (menuItems.length - 1)} showMenu={showMenu} key={index} index={index} text={item.text} url={item.url} setActiveIndex={setActiveIndex} activeIndex={activeIndex} svg={item.svg && React.cloneElement(item.svg, { index })} />
+                    ))
+                }
+            </div>
+            <div className="flex flex-1 items-end ">
+                <div className="group pb-2 w-full">
+                    <CollapseMenuItem showMenu={showMenu} handlePinMenuClick={handlePinMenuClick} menuPinned={menuPinned} />
                 </div>
             </div>
-            {
-                menuItems.map((item, index) => (
-                    <NavItem key={index} index={index} text={item.text} url={item.url} setActiveIndex={setActiveIndex} activeIndex={activeIndex} svg={item.svg && React.cloneElement(item.svg, {index})} />
-                ))
-            }
         </div>
     );
 }

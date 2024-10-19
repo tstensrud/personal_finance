@@ -2,6 +2,9 @@
 @tailwind components;
 @tailwind utilities;
 
+* {
+  box-sizing: border-box;
+}
 
 @layer base {
   html{
@@ -14,9 +17,12 @@
 
 }
 
+
 .app {
   width: 100%;
   height: 100%;
   padding: 0;
   margin: 0;
+  background-color: #472115;
+  border-color: #2c2c2c3b;
 }
