@@ -40,7 +40,7 @@ function NavPanel({ showMenu, setShowMenu, menuPinned, setMenuPinned, setIsMenuA
         <div className="flex flex-col w-full h-full bg-tertiary-color rounded-lg">
             <div className={`flex flex-col h-20 items-center justify-center`}>
                 <div className={`justify-center h-full flex items-center`}>
-                    <AppIcon />
+                    <AppIcon dimensions={30} />
                 </div>
             </div>
 

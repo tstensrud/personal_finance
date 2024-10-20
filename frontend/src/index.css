@@ -7,12 +7,16 @@
 }
 
 @layer base {
-  html{
-    @apply m-0 p-0 w-full h-full antialiased;
-  } 
-  
+  html {
+    @apply m-0 p-0 w-full h-full text-primary-color antialiased;
+  }
+
   body {
-    @apply overflow-hidden m-0 p-0 h-full w-full antialiased;
+    @apply overflow-hidden m-0 p-0 h-full w-full text-primary-color antialiased;
+  }
+
+  a {
+    @apply text-accent-color-main hover:text-primary-color transition duration-200;
   }
 
 }

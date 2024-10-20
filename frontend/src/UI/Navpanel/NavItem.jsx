@@ -5,7 +5,9 @@ function NavItem({ svg, url, text, activeIndex, index, setActiveIndex, showMenu,
     const navigate = useNavigate();
 
     const handleClick = () => {
-        setActiveIndex(index);
+        if (activeIndex) {
+            setActiveIndex(index);
+        }
         navigate(url)
     }
 
@@ -21,7 +23,6 @@ function NavItem({ svg, url, text, activeIndex, index, setActiveIndex, showMenu,
                     <div className={`pl-3 font-semibold text-sm flex flex-1 items-center h-full transition duration-100 overflow-hidden whitespace-nowrap ${activeIndex === index ? 'text-accent-color-main group-hover:text-accent-color-main' : 'text-light-grey group-hover:text-primary-color'}`}>
                         { showMenu && <>{text}</> }
                     </div>
-
                 </div>
             </div>
         </div>

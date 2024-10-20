@@ -45,11 +45,17 @@ export default {
         slideOutLeft: {
           '0%': {width: '220px'},
           '100%': { width: '70px'}
-        }
+        },
+        slide: {
+          '0%' : {left: '-30%'},
+          '50%': {left: '50%'},
+          '100%': {left: '100%'},
+        },
       },
       animation: {
         slideFromLeft: 'slideFromLeft 0.1s ease-in forwards',
-        slideOutLeft: 'slideOutLeft 0.1s ease-in forwards'
+        slideOutLeft: 'slideOutLeft 0.1s ease-in forwards',
+        slide: 'slide 3.0s linear infinite',
       }
     },
     plugins: [],

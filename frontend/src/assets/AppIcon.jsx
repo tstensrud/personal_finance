@@ -1,6 +1,6 @@
-function AppIcon() {
+function AppIcon({ dimensions }) {
 	return (
-		<svg height="30" width="30" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+		<svg height={dimensions} width={dimensions} xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink"
 			viewBox="0 0 512 512" className="fill-accent-color-main">
 
 			<path d="M503.596,307.2h-28.6c-15-31.7-35.7-50.6-63-57.7l14.5-50.9c1-3.4-0.3-7-3.1-9.2c-2.8-2.1-6.7-2.3-9.7-0.4l-62.9,39.3
