@@ -1,7 +1,7 @@
 import { createContext, useEffect, useReducer, useState } from "react";
 import {  onAuthStateChanged, onIdTokenChanged } from 'firebase/auth';
 import { auth } from '../../firebase/firebase.js';
-import AuthReducer from "./AuthReducer";
+import AuthReducer from "./AuthReducer.jsx";
 
 const INITIAL_STATE = {
     currentUser: JSON.parse(localStorage.getItem("user")) || null,

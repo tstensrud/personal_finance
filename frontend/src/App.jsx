@@ -1,19 +1,21 @@
 import { useContext, useState } from 'react'
 import { HashRouter as Router, Route, Routes, Navigate } from 'react-router-dom';
 
-import { AuthContext } from './Context/AuthContext.jsx';
+import { AuthContext } from './context/AuthContext.jsx';
 
-import Home from './Pages/Home/Home.jsx';
-import Assets from './Pages/Assets/Assets.jsx';
-import Stocks from './Pages/Stocks/Stocks.jsx';
-import Debts from './Pages/Debts/Debts.jsx';
-import Spending from './Pages/Spending/Spending.jsx';
-import Login from './Pages/Login/Login.jsx';
-import LogOut from './Pages/Logout/Logout.jsx';
-import Account from './Pages/Account/Account.jsx';
+import Home from './pages/home/Home.jsx';
+import Assets from './pages/assets/Assets.jsx';
+import Securities from './pages/securities/Securities.jsx';
+import Debts from './pages/debts/Debts.jsx';
+import Spending from './pages/spending/Spending.jsx';
+import Login from './pages/login/Login.jsx';
+import LogOut from './pages/logout/Logout.jsx';
+import Account from './pages/account/Account.jsx';
+import NotFound from './UI/NotFound.jsx';
 
 
 import Layout from './UI/Layout';
+import Register from './pages/register/Register.jsx';
 
 function App() {
 
@@ -31,16 +33,18 @@ function App() {
             <>
               <Route path="/" element={<Login />} />
               <Route path="*" element={<Login />} />
+              <Route path="register" element={<Register />} />
             </>
           ) : (
             <Route path="/" element={<Layout />}>
               <Route path="home" element={<RequiredAuth><Home /></RequiredAuth>} />
-              <Route path="stocks" element={<RequiredAuth><Stocks /></RequiredAuth>} />
+              <Route path="securities" element={<RequiredAuth><Securities /></RequiredAuth>} />
               <Route path="debts" element={<RequiredAuth><Debts /></RequiredAuth>} />
               <Route path="assets" element={<RequiredAuth><Assets /></RequiredAuth>} />
               <Route path="spending" element={<RequiredAuth><Spending /></RequiredAuth>} />
               <Route path="account" element={<RequiredAuth><Account /></RequiredAuth>} />
               <Route path="logout" element={<LogOut />}/>
+              <Route path="*" element={<NotFound />} />
             </Route>
           )
         }

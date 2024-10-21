@@ -2,7 +2,7 @@ import { useState, useContext } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { getAuth, signInWithEmailAndPassword, sendPasswordResetEmail } from "firebase/auth";
 
-import { AuthContext } from "../../Context/AuthContext";
+import { AuthContext } from "../../Context/AuthContext.jsx";
 
 
 import AppIcon from '../../assets/AppIcon.jsx';
@@ -29,7 +29,6 @@ function Login() {
                 const user = userCredential.user;
                 dispatch({ type: "LOGIN", payload: user })
                 navigate("home");
-                console.log(user);
             })
             .catch((error) => {
                 const errorCode = error.code;
@@ -65,10 +64,8 @@ function Login() {
     }
 
     return (
-        <div className="flex items-center justify-center w-full h-full bg-secondary-color">
-
+        <div className="flex items-center justify-center w-full h-full bg-gradient-to-tr from-tertiary-color to-secondary-color">
             <div className="pl-5 flex flex-row w-[800px] h-[500px] rounded-lg">
-
                 <div className="flex flex-col w-1/2">
                     <div className="flex h-10 w-full justify-start text-3xl -tracking-wider">
                         <div className="flex h-full items-center">
@@ -111,9 +108,8 @@ function Login() {
                         Not registered?
                     </div>
                     <div className="text-light-grey">
-                        Register <Link to="">here</Link> in less than 60 seconds and start tracking your personal finances.
+                        Register <Link to="register">here</Link> in less than 60 seconds and start tracking your personal finances.
                     </div>
-
                 </div>
 
                 <div className="flex flex-col w-1/2 h-full items-center justify-center">
@@ -161,8 +157,6 @@ function Login() {
                     </form>
                 </div>
             </div>
-
-
         </div>
     );
 }

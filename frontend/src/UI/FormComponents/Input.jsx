@@ -1,7 +1,7 @@
 function Input({ type, name, value, onChange, placeholder, search }) {
     return (
         <div className="flex w-full h-full">
-            <input name={name} value={value} type={type} onChange={onchange} placeholder={placeholder}
+            <input name={name} value={value} type={type} onChange={onChange} placeholder={placeholder}
                 className="
         w-full
         h-full

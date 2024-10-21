@@ -1,4 +1,4 @@
-import Card from "../../UI/Card";
+import Card from "../../UI/Card.jsx";
 import TableRow from './TableRow.jsx';
 import PlusSquareIcon from "../../assets/menusvgs/PlusSquareIcon.jsx";
 

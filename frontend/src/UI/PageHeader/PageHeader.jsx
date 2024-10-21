@@ -1,16 +1,18 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 
 import SettingsIcon from '../../assets/menusvgs/SettingsIcon.jsx';
 import LogoutIcon from '../../assets/menusvgs/LogutIcon.jsx';
-import Input from "../FormComponents/Input";
-import NavItem from "../Navpanel/NavItem.jsx";
+import Input from "../formcomponents/Input.jsx";
+import NavItem from "../navpanel/NavItem.jsx";
 import LoadingBar from "../Widgets/LoadingBar.jsx";
+import { AuthContext } from "../../Context/AuthContext.jsx";
 
-function PageHeader() {
+function PageHeader({ activeIndex, setActiveIndex }) {
     const [showSettingsMenu, setShowSettingsMenu] = useState(false);
+    const { currentUser } = useContext(AuthContext);
 
     const menuItems = [
-        { text: "Settings", url: "account", svg: <SettingsIcon activeIndex={null} /> },
+        { text: "Account", url: "account", svg: <SettingsIcon activeIndex={null} /> },
         { text: "Log out", url: "logout", svg: <LogoutIcon activeIndex={null} /> },
     ];
 
@@ -25,7 +27,7 @@ function PageHeader() {
                 </div>
                 <div className="flex">
                     <div onClick={() => setShowSettingsMenu(!showSettingsMenu)} className="flex cursor-pointer items-center justify-center rounded-full h-10 w-10 border border-light-grey hover:border-accent-color-main hover:text-accent-color-main text-xl font-semibold">
-                        T
+                        {currentUser?.displayName[0]}
                     </div>
                 </div>
                 {
@@ -33,7 +35,7 @@ function PageHeader() {
                         <div className={`absolute z-50 border border-light-grey h-20 top-full right-0 bg-tertiary-color p-2 rounded-lg w-40`}>
                             {
                                 menuItems.map((item, index) => (
-                                    <NavItem lastIndex={index === (menuItems.length - 1)} showMenu={true} key={index} index={index} text={item.text} url={item.url} setActiveIndex={null} activeIndex={null} svg={item.svg} />
+                                    <NavItem index={index + 10} setShowSettingsMenu={setShowSettingsMenu} lastIndex={index === (menuItems.length - 1)} showMenu={true} key={index} text={item.text} url={item.url} setActiveIndex={setActiveIndex} activeIndex={activeIndex} svg={item.svg} />
                                 ))
                             }
                         </div>

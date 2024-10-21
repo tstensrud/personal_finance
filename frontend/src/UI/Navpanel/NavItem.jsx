@@ -1,12 +1,13 @@
 import { useNavigate } from 'react-router-dom';
 
-function NavItem({ svg, url, text, activeIndex, index, setActiveIndex, showMenu, lastIndex }) {
+function NavItem({ svg, url, text, activeIndex, index, setActiveIndex, showMenu, lastIndex, setShowSettingsMenu }) {
 
     const navigate = useNavigate();
 
     const handleClick = () => {
-        if (activeIndex) {
             setActiveIndex(index);
+        if (setShowSettingsMenu) {
+            setShowSettingsMenu(false);
         }
         navigate(url)
     }

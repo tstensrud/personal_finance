@@ -8,7 +8,8 @@ export default {
     colors: {
       'primary-color': '#FEFEFE',
       'secondary-color': "#060E0E",
-      'tertiary-color': "#121c26", 
+      'tertiary-color': "#121c26",
+      'tertiary-color-faded': "#202933",
       "accent-color-main": "#00FFA7",
       'accent-color-main-faded': '#122c1c',
       "accent-color-secondary": "#7E67F6",

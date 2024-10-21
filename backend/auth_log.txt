@@ -1,0 +1,1 @@
+- 2024-10-21 13:18:01.656015: Error creating new firebase user: The user with the provided email already exists (EMAIL_EXISTS).

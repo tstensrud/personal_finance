@@ -12,12 +12,11 @@ import DebtsIcon from '../../assets/menusvgs/DebtsIcon';
 import SpendingIcon from '../../assets/menusvgs/SpendingIcon';
 import CollapseMenuItem from './CollapseMenuItem';
 
-function NavPanel({ showMenu, setShowMenu, menuPinned, setMenuPinned, setIsMenuAnimationInProgress }) {
-    const [activeIndex, setActiveIndex] = useState(0);
+function NavPanel({ showMenu, setShowMenu, menuPinned, setMenuPinned, setIsMenuAnimationInProgress, setActiveIndex, activeIndex }) {
 
     const menuItems = [
         { text: "Home", url: "home", svg: <HomeIcon activeIndex={activeIndex} /> },
-        { text: "Stocks", url: "stocks", svg: <StocksIcon activeIndex={activeIndex} /> },
+        { text: "Securities", url: "securities", svg: <StocksIcon activeIndex={activeIndex} /> },
         { text: "Other assets", url: "assets", svg: <AssetsIcon activeIndex={activeIndex} /> },
         { text: "Debts", url: "debts", svg: <DebtsIcon activeIndex={activeIndex} /> },
         { text: "Spending plan", url: "spending", svg: <SpendingIcon activeIndex={activeIndex} /> },
