@@ -4,7 +4,7 @@ import { Link, useNavigate } from "react-router-dom";
 import useSubmitData from '../../hooks/useSubmitData.jsx'
 
 import AppIcon from '../../assets/AppIcon.jsx';
-import LoadingSpinner from '../../UI/widgets/LoadingSpinner.jsx'
+import LoadingSpinner from '../../ui/widgets/LoadingSpinner.jsx'
 
 function Register() {
 
@@ -65,14 +65,14 @@ function Register() {
                 <form onSubmit={handleSubmitNewUser} className="flex flex-col w-full">
                     <div className="w-full flex pt-10 pl-1 pr-1">
                         <div className="flex w-1/2">
-                            <input className="border border-grey text-primary-color bg-secondary-color rounded-lg w-full pt-2 pb-2 pl-5 pr-5 focus:border-accent-color-main focus:outline-none hover:border-accent-color-main" type="text" name="firstname" onChange={handleFormChange} required placeholder="First name" />
+                            <input className="border border-grey-border-color text-primary-color bg-secondary-color rounded-lg w-full pt-2 pb-2 pl-5 pr-5 focus:border-accent-color-main focus:outline-none hover:border-accent-color-main" type="text" name="firstname" onChange={handleFormChange} required placeholder="First name" />
                             <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" strokeLinecap="round" strokeLinejoin="round" className="stroke-light-grey stroke-2 fill-none relative right-8 top-3">
                                 <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
                                 <circle cx="12" cy="7" r="4"></circle>
                             </svg>
                         </div>
                         <div className="flex w-1/2">
-                            <input className="border border-grey text-primary-color bg-secondary-color rounded-lg w-full pt-2 pb-2 pl-5 pr-5 focus:border-accent-color-main focus:outline-none hover:border-accent-color-main" type="text" name="lastname" onChange={handleFormChange} required placeholder="Last name" />
+                            <input className="border border-grey-border-color text-primary-color bg-secondary-color rounded-lg w-full pt-2 pb-2 pl-5 pr-5 focus:border-accent-color-main focus:outline-none hover:border-accent-color-main" type="text" name="lastname" onChange={handleFormChange} required placeholder="Last name" />
                             <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" strokeLinecap="round" strokeLinejoin="round" className="stroke-light-grey stroke-2 fill-none relative right-8 top-3">
                                 <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
                                 <circle cx="12" cy="7" r="4"></circle>
@@ -81,7 +81,7 @@ function Register() {
                     </div>
 
                     <div className="w-full flex pt-3 pl-1 pr-1">
-                        <input className="border border-grey text-primary-color bg-secondary-color rounded-lg w-full pt-2 pb-2 pl-5 pr-5 focus:border-accent-color-main focus:outline-none hover:border-accent-color-main" type="text" name="email" onChange={handleFormChange} required placeholder="E-mail" />
+                        <input className="border border-grey-border-color text-primary-color bg-secondary-color rounded-lg w-full pt-2 pb-2 pl-5 pr-5 focus:border-accent-color-main focus:outline-none hover:border-accent-color-main" type="text" name="email" onChange={handleFormChange} required placeholder="E-mail" />
                         <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" strokeLinecap="round" strokeLinejoin="round" className="stroke-light-grey stroke-2 fill-none relative right-8 top-3">
                             <circle cx="12" cy="12" r="4"></circle>
                             <path d="M16 12v1a3 3 0 0 0 6 0v-1a10 10 0 1 0-3.92 7.94"></path>
@@ -89,7 +89,7 @@ function Register() {
                     </div>
 
                     <div className="w-full flex pt-3 pl-1 pr-1">
-                        <input className="border border-grey text-primary-color bg-secondary-color rounded-lg w-full pt-2 pb-2 pl-5 focus:border-accent-color-main focus:outline-none hover:border-accent-color-main" type={passwordInputType} name="password" onChange={handleFormChange} required placeholder="Password" />
+                        <input className="border border-grey-border-color text-primary-color bg-secondary-color rounded-lg w-full pt-2 pb-2 pl-5 focus:border-accent-color-main focus:outline-none hover:border-accent-color-main" type={passwordInputType} name="password" onChange={handleFormChange} required placeholder="Password" />
                         {
                             passwordInputType === "password" ? (
                                 <svg onClick={handlePasswordVisibleClick} xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" strokeLinecap="round" strokeLinejoin="round" className="stroke-light-grey stroke-2 fill-none relative right-8 top-1/2 -translate-y-1/2 cursor-pointer hover:stroke-primary-color">
@@ -107,7 +107,7 @@ function Register() {
 
                     <div className="flex flex-col mt-3 justify-center pt-3 pl-1 pr-1">
                         <div className="mb-5">
-                            <button className="border border-grey bg-secondary-color hover:border-accent-color-main focus:border-accent-color-main rounded-lg pt-2 pb-2 pl-5 pr-5 focus:outline-none" type="submit">
+                            <button className="border border-grey-border-color bg-secondary-color hover:border-accent-color-main focus:border-accent-color-main rounded-lg pt-2 pb-2 pl-5 pr-5 focus:outline-none" type="submit">
                                 Register
                             </button>
                         </div>

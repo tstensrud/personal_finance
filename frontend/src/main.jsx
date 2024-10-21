@@ -3,8 +3,8 @@ import { createRoot } from 'react-dom/client'
 import './index.css'
 import App from './App';
 
-import { GlobalProvider } from './Context/GlobalContext';
-import { AuthContextProvider } from './Context/AuthContext';
+import { GlobalProvider } from './context/GlobalContext';
+import { AuthContextProvider } from './context/AuthContext';
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>

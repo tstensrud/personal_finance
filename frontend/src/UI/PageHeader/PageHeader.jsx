@@ -1,11 +1,13 @@
 import { useContext, useState } from "react";
 
+import { AuthContext } from "../../context/AuthContext.jsx";
+
 import SettingsIcon from '../../assets/menusvgs/SettingsIcon.jsx';
 import LogoutIcon from '../../assets/menusvgs/LogutIcon.jsx';
 import Input from "../formcomponents/Input.jsx";
-import NavItem from "../navpanel/NavItem.jsx";
-import LoadingBar from "../Widgets/LoadingBar.jsx";
-import { AuthContext } from "../../Context/AuthContext.jsx";
+import LoadingBar from "../widgets/LoadingBar.jsx";
+import NavItem from '../navpanel/NavItem.jsx';
+
 
 function PageHeader({ activeIndex, setActiveIndex }) {
     const [showSettingsMenu, setShowSettingsMenu] = useState(false);
@@ -17,7 +19,7 @@ function PageHeader({ activeIndex, setActiveIndex }) {
     ];
 
     return (
-        <div className="flex w-full h-16 items-center top-0 sticky border-b border-grey">
+        <div className="flex w-full h-16 items-center top-0 sticky border-b border-grey-border-color">
             <div className="text-2xl font-semibold -tracking-wide">
                 Your personal finances
             </div>
@@ -26,13 +28,13 @@ function PageHeader({ activeIndex, setActiveIndex }) {
                     <Input placeholder="Search" search />
                 </div>
                 <div className="flex">
-                    <div onClick={() => setShowSettingsMenu(!showSettingsMenu)} className="flex cursor-pointer items-center justify-center rounded-full h-10 w-10 border border-light-grey hover:border-accent-color-main hover:text-accent-color-main text-xl font-semibold">
+                    <div onClick={() => setShowSettingsMenu(!showSettingsMenu)} className="flex cursor-pointer items-center justify-center rounded-full h-10 w-10 border border-grey-border-color hover:border-accent-color-main hover:text-accent-color-main text-xl font-semibold">
                         {currentUser?.displayName[0]}
                     </div>
                 </div>
                 {
                     showSettingsMenu && (
-                        <div className={`absolute z-50 border border-light-grey h-20 top-full right-0 bg-tertiary-color p-2 rounded-lg w-40`}>
+                        <div className={`absolute z-50 border border-grey-border-color h-20 top-full right-0 bg-tertiary-color p-2 rounded-lg w-40`}>
                             {
                                 menuItems.map((item, index) => (
                                     <NavItem index={index + 10} setShowSettingsMenu={setShowSettingsMenu} lastIndex={index === (menuItems.length - 1)} showMenu={true} key={index} text={item.text} url={item.url} setActiveIndex={setActiveIndex} activeIndex={activeIndex} svg={item.svg} />

@@ -1,5 +1,5 @@
 import { useContext } from "react";
-import { AuthContext } from "../../Context/AuthContext";
+import { AuthContext } from "../../context/AuthContext";
 
 
 import ChangePassword from "./ChangePassword";
@@ -12,7 +12,7 @@ function Account() {
 
             <div className="flex flex-col w-10/12">
                 <div className="flex">
-                    <div className="w-52 border-r border-light-grey p-2">
+                    <div className="w-52 border-r border-grey-border-color p-2">
                         Account info
                     </div>
                     <div className="flex flex-col flex-1 pl-10 pb-2 pt-2">
@@ -43,7 +43,7 @@ function Account() {
 
             <div className="flex flex-col w-10/12 mt-2">
                 <div className="flex">
-                    <div className="w-52 border-r border-light-grey p-2">
+                    <div className="w-52 border-r border-grey-border-color p-2">
                         Settings
                     </div>
                     <div className="flex flex-col flex-1 pl-10 pb-2 pt-2">
@@ -64,7 +64,7 @@ function Account() {
 
             <div className="flex flex-col w-10/12 mt-2">
                 <div className="flex">
-                    <div className="w-52 border-r border-light-grey p-2">
+                    <div className="w-52 border-r border-grey-border-color p-2">
                         Change password
                     </div>
                     <div className="flex flex-col flex-1 pl-10 pb-2 pt-2">

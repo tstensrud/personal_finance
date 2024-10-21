@@ -16,6 +16,7 @@ export default {
       "accent-color-secondary-faded": "#37305c",
       'grey': "#2C2C2C",
       'grey-opacity': '#2c2c2c3b',
+      'grey-border-color': "rgb(43, 53, 64)",
       'light-grey': "#666666"
 
 

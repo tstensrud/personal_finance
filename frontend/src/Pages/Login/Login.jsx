@@ -2,11 +2,11 @@ import { useState, useContext } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { getAuth, signInWithEmailAndPassword, sendPasswordResetEmail } from "firebase/auth";
 
-import { AuthContext } from "../../Context/AuthContext.jsx";
+import { AuthContext } from "../../context/AuthContext.jsx";
 
 
 import AppIcon from '../../assets/AppIcon.jsx';
-import LoadingSpinner from '../../UI/Widgets/LoadingSpinner.jsx'
+import LoadingSpinner from '../../ui/widgets/LoadingSpinner.jsx'
 
 function Login() {
     const [email, setEmail] = useState("");
@@ -116,7 +116,7 @@ function Login() {
                     <form>
                         <div className="flex flex-col h-full items-center justify-center">
                             <div className="flex">
-                                <input className="border border-grey text-primary-color bg-secondary-color rounded-lg w-full pt-2 pb-2 pl-5 pr-5 focus:border-accent-color-main focus:outline-none hover:border-accent-color-main" type="text" value={email} onChange={(e) => setEmail(e.target.value)} placeholder="E-mail" />
+                                <input className="border border-grey-border-color text-primary-color bg-secondary-color rounded-lg w-full pt-2 pb-2 pl-5 pr-5 focus:border-accent-color-main focus:outline-none hover:border-accent-color-main" type="text" value={email} onChange={(e) => setEmail(e.target.value)} placeholder="E-mail" />
                                 <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" strokeLinecap="round" strokeLinejoin="round" className="stroke-grey stroke-2 fill-none relative right-8 top-3">
                                     <circle cx="12" cy="12" r="4"></circle>
                                     <path d="M16 12v1a3 3 0 0 0 6 0v-1a10 10 0 1 0-3.92 7.94"></path>
@@ -124,7 +124,7 @@ function Login() {
                             </div>
 
                             <div className="flex pt-3">
-                                <input className="border border-grey text-primary-color bg-secondary-color rounded-lg w-full pt-2 pb-2 pl-5 pr-5 focus:border-accent-color-main focus:outline-none hover:border-accent-color-main" type={passwordInputType} value={password} onChange={(e) => setPassword(e.target.value)} placeholder="Password" />
+                                <input className="border border-grey-border-color text-primary-color bg-secondary-color rounded-lg w-full pt-2 pb-2 pl-5 pr-5 focus:border-accent-color-main focus:outline-none hover:border-accent-color-main" type={passwordInputType} value={password} onChange={(e) => setPassword(e.target.value)} placeholder="Password" />
                                 {
                                     passwordInputType === "password" ? (
                                         <svg onClick={handlePasswordVisibleClick} xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="stroke-grey fill-none relative right-8 top-3 cursor-pointer hover:stroke-primary-color">
@@ -141,7 +141,7 @@ function Login() {
                             </div>
                             <div className="flex flex-col mt-3 justify-center">
                                 <div className="mb-5">
-                                    <button onClick={firebaseLogin} className="border border-grey hover:border-accent-color-main focus:border-accent-color-main rounded-lg pt-2 pb-2 pl-5 pr-5 focus:outline-none" type="submit">
+                                    <button onClick={firebaseLogin} className="border border-grey-border-color hover:border-accent-color-main focus:border-accent-color-main rounded-lg pt-2 pb-2 pl-5 pr-5 focus:outline-none" type="submit">
                                         Log inn
                                     </button>
                                 </div>

@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 
 // Components
-import NavItem from './NavItem';
+import NavItem from './NavItem.jsx';
 
 // Navitem SVGs
 import AppIcon from '../../assets/AppIcon';
@@ -12,7 +12,7 @@ import DebtsIcon from '../../assets/menusvgs/DebtsIcon';
 import SpendingIcon from '../../assets/menusvgs/SpendingIcon';
 import CollapseMenuItem from './CollapseMenuItem';
 
-function NavPanel({ showMenu, setShowMenu, menuPinned, setMenuPinned, setIsMenuAnimationInProgress, setActiveIndex, activeIndex }) {
+function NavPanel({ showMenu, setShowMenu, setActiveIndex, activeIndex }) {
 
     const menuItems = [
         { text: "Home", url: "home", svg: <HomeIcon activeIndex={activeIndex} /> },
@@ -21,19 +21,6 @@ function NavPanel({ showMenu, setShowMenu, menuPinned, setMenuPinned, setIsMenuA
         { text: "Debts", url: "debts", svg: <DebtsIcon activeIndex={activeIndex} /> },
         { text: "Spending plan", url: "spending", svg: <SpendingIcon activeIndex={activeIndex} /> },
     ];
-
-    const handlePinMenuClick = (e) => {
-        e.preventDefault();
-        if (menuPinned) {
-            setIsMenuAnimationInProgress(true);
-            setMenuPinned(false);
-            setShowMenu(false);
-        }
-        else if (!menuPinned) {
-            setMenuPinned(true);
-            setShowMenu(true);
-        }
-    }
     
     return (
         <div className="flex flex-col w-full h-full bg-tertiary-color rounded-lg">
@@ -52,7 +39,7 @@ function NavPanel({ showMenu, setShowMenu, menuPinned, setMenuPinned, setIsMenuA
             </div>
             <div className="flex flex-1 items-end ">
                 <div className="group pb-2 w-full">
-                    <CollapseMenuItem showMenu={showMenu} handlePinMenuClick={handlePinMenuClick} menuPinned={menuPinned} />
+                    <CollapseMenuItem showMenu={showMenu} setShowMenu={setShowMenu} />
                 </div>
             </div>
         </div>

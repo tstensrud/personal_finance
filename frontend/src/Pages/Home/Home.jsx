@@ -1,7 +1,7 @@
 import { useContext } from "react";
-import { AuthContext } from "../../Context/AuthContext";
-import LoadingSpinner from "../../UI/Widgets/LoadingSpinner";
-import LoadingBar from "../../UI/Widgets/LoadingBar";
+import { AuthContext } from "../../context/AuthContext";
+import LoadingSpinner from "../../ui/widgets/LoadingSpinner";
+import LoadingBar from "../../ui/widgets/LoadingBar";
 
 function PersonalFinance() {
     

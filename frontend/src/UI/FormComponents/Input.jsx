@@ -8,7 +8,7 @@ function Input({ type, name, value, onChange, placeholder, search }) {
         pl-4
         bg-secondary-color
         border
-        border-grey
+        border-grey-border-color
         rounded-lg
         outline-none
         hover:border-accent-color-main

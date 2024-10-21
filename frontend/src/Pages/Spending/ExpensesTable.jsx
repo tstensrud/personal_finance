@@ -1,11 +1,11 @@
-import Card from "../../UI/Card.jsx";
+import Card from "../../ui/Card.jsx";
 import TableRow from './TableRow.jsx';
 import PlusSquareIcon from "../../assets/menusvgs/PlusSquareIcon.jsx";
 
-function ExpensesTable() {
+function ExpensesTable({setTotalExpense, currentUser}) {
     return (
         <Card>
-            <div className="flex w-full border-b border-grey h-10 items-center">
+            <div className="flex w-full border-b border-grey-border-color h-10 items-center">
                 <div className="pl-2 text-light-grey">Expense</div>
                 <div className="pr-2 flex flex-1 justify-end">
                     <div className="group cursor-pointer">

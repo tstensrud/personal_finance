@@ -18,7 +18,6 @@
   a {
     @apply text-accent-color-main hover:text-primary-color transition duration-200;
   }
-
 }
 
 

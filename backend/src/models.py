@@ -111,10 +111,63 @@ class debts(db.Model):
         return {
             "id": self.id,
             "uid": self.uid,
-            "userUid": self.user_uid,
+            "user_uid": self.user_uid,
             "debt_type": self.debt_type,
             "debt_name": self.debt_name,
             "value": self.value,
             "created_at": self.created_at,
             "updated_at": self.updated_at
+        }
+
+class spending_plan(db.Model):
+    __tablename__ = "spending_plan"
+    id = db.Column(db.Integer, primary_key=True, autoincrement=True)
+    uid = db.Column(db.String(255), unique=True, nullable=False)
+    user_uid = db.Column(db.String(255), db.ForeignKey('users.uuid'), nullable=False)
+    type_income = db.Column(db.Boolean, default=False)
+    type_expense = db.Column(db.Boolean, default=False)
+    type_name = db.Column(db.String(255), nullable=False)
+    amount = db.Column(db.Integer)
+
+    def to_json(self):
+        return {
+            "id": self.id,
+            "uid": self.uid,
+            "user_uid": self.user_uid,
+            "type_income": self.type_income,
+            "type_expense": self.type_expense,
+            "type_name": self.type_name,
+            "amount": self.amount
+        }
+
+class spending_plan_expense_categories(db.Model):
+    __tablename__ = "spending_plan_expense_categories"
+    id = db.Column(db.Integer, primary_key=True, autoincrement=True)
+    uid = db.Column(db.String(255), unique=True, nullable=False)
+    category_name = db.Column(db.String(255))
+
+    def to_json(self):
+        return {
+            "id": self.id,
+            "uid": self.uid,
+            "category_name": self.category_name
+        }
+
+class spending_plan_expenses(db.Model):
+    __tablename__ = "spending_plan_expenses"
+    id = db.Column(db.Integer, primary_key=True, autoincrement=True)
+    uid = db.Column(db.String(255), unique=True, nullable=False)
+    user_uid = db.Column(db.String(255), db.ForeignKey('users.uuid'), nullable=False)
+    type_name = db.Column(db.String(255))
+    amount = db.Column(db.Integer)
+    category = db.Column(db.String(255), db.ForeignKey('spending_plan_expense_categories.uid'), nullable=False)
+
+    def to_json(self):
+        return {
+            "id": self.id,
+            "uid": self.uid,
+            "user_uid": self.user_uid,
+            "type_name": self.type_name,
+            "amount": self.amount,
+            "category": self.category
         }

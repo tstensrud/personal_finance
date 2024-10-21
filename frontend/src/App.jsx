@@ -11,10 +11,10 @@ import Spending from './pages/spending/Spending.jsx';
 import Login from './pages/login/Login.jsx';
 import LogOut from './pages/logout/Logout.jsx';
 import Account from './pages/account/Account.jsx';
-import NotFound from './UI/NotFound.jsx';
+import NotFound from './ui/NotFound.jsx';
 
 
-import Layout from './UI/Layout';
+import Layout from './ui/Layout';
 import Register from './pages/register/Register.jsx';
 
 function App() {

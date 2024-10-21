@@ -23,3 +23,10 @@ def firebase_auth_required(f):
         return f(*args, **kwargs)
     return decorated_function
 
+##########################
+# SPENDING PLAN / BUDGET #
+##########################
+@api_bp.route('/spending_plan/<uuid>/', methods=['GET'])
+@firebase_auth_required
+def get_spending_plan(uuid):
+    user = dbo.get_user(uuid=uuid)

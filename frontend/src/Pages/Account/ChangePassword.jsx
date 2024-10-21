@@ -1,8 +1,8 @@
 import { useEffect, useState } from 'react';
 import { reauthenticateWithCredential, updatePassword, EmailAuthProvider } from 'firebase/auth';
 
-import Button from '../../UI/formcomponents/Button.jsx';
-import Input from '../../UI/formcomponents/Input.jsx';
+import Button from '../../ui/formcomponents/Button.jsx';
+import Input from '../../ui/formcomponents/Input.jsx';
 
 import ThumbsUpIcon from '../../assets/ThumbsUpIcon.jsx';
 

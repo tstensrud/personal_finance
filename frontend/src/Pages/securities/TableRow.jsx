@@ -1,6 +1,6 @@
 function TableRow() {
     return (
-        <tr className="border-t border-light-grey hover:bg-tertiary-color-faded text-sm">
+        <tr className="border-t border-grey-border-color hover:bg-tertiary-color-faded text-sm">
             <td className="w-5 text-center justify-center h-10">
                 <input type="checkbox" />
             </td>
