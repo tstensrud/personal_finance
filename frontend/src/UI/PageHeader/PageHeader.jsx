@@ -17,7 +17,8 @@ function PageHeader({ activeIndex, setActiveIndex }) {
         { text: "Account", url: "account", svg: <SettingsIcon activeIndex={null} /> },
         { text: "Log out", url: "logout", svg: <LogoutIcon activeIndex={null} /> },
     ];
-    console.log(currentUser)
+
+    
     return (
         <div className="flex w-full h-16 items-center top-0 sticky border-b border-grey-border-color">
             <div className="text-2xl font-semibold -tracking-wide">

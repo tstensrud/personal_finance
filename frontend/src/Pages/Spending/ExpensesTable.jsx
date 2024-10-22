@@ -28,7 +28,7 @@ function ExpensesTable({ setTotalExpense, currentUser }) {
             </div>
             {
                 showInputRow && (
-                    <InputRow showInputRow={showInputRow} currentUser={currentUser} expense placeholder="Name" />
+                    <InputRow showInputRow={showInputRow} currentUser={currentUser} expense placeholder="Name of expense" />
                 )
             }
             <TableRow expense currentUser={currentUser} source="Food" amount={7000} />

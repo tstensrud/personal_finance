@@ -30,7 +30,7 @@ function IncomeTable({currentUser, setTotalIncome}) {
             </div>
             {
                 showInputRow && (
-                    <InputRow showInputRow={showInputRow} currentUser={currentUser} placeholder="Income source" />
+                    <InputRow showInputRow={showInputRow} currentUser={currentUser} placeholder="Source of income" />
                 )
             }
             <TableRow source="Salary" amount={35000} />
