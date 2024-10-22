@@ -17,7 +17,7 @@ function PageHeader({ activeIndex, setActiveIndex }) {
         { text: "Account", url: "account", svg: <SettingsIcon activeIndex={null} /> },
         { text: "Log out", url: "logout", svg: <LogoutIcon activeIndex={null} /> },
     ];
-
+    console.log(currentUser)
     return (
         <div className="flex w-full h-16 items-center top-0 sticky border-b border-grey-border-color">
             <div className="text-2xl font-semibold -tracking-wide">
@@ -29,7 +29,7 @@ function PageHeader({ activeIndex, setActiveIndex }) {
                 </div>
                 <div className="flex">
                     <div onClick={() => setShowSettingsMenu(!showSettingsMenu)} className="flex cursor-pointer items-center justify-center rounded-full h-10 w-10 border border-grey-border-color hover:border-accent-color-main hover:text-accent-color-main text-xl font-semibold">
-                        {currentUser?.displayName[0]}
+                        {currentUser?.displayName?.[0] ?? '?'}
                     </div>
                 </div>
                 {

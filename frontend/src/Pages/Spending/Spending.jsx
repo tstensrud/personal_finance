@@ -20,22 +20,22 @@ function Spending() {
                 <div className="flex items-center h-16 text-lg -tracking-wide">
                     Income
                 </div>
-                <div className="w-96">
+                <div className="w-[28rem]">
                     <IncomeTable setTotalIncome={setTotalIncome} currentUser={currentUser} />
                 </div>
                 <div className="flex items-center h-16 text-lg -tracking-wide">
                     Expenses
                 </div>
-                <div className="w-96">
+                <div className="w-[28rem]">
                     <ExpensesTable setTotalIncome={setTotalExpense} currentUser={currentUser} />
                 </div>
             </div>
-            <div className="flex flex-col">
 
+            <div className="flex flex-col">
                 <div className="flex items-center h-16 text-lg -tracking-wide">
                     Monthly status
                 </div>
-                <div className="w-96">
+                <div className="w-[28rem]">
                     <Card>
                         <div className="p-2 flex w-full border-b border-grey-border-color h-10 items-center text-light-grey">
                             Summary

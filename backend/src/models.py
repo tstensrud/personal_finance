@@ -119,29 +119,39 @@ class debts(db.Model):
             "updated_at": self.updated_at
         }
 
-class spending_plan(db.Model):
-    __tablename__ = "spending_plan"
+class spending_plan_income(db.Model):
+    __tablename__ = "spending_plan_income"
     id = db.Column(db.Integer, primary_key=True, autoincrement=True)
     uid = db.Column(db.String(255), unique=True, nullable=False)
     user_uid = db.Column(db.String(255), db.ForeignKey('users.uuid'), nullable=False)
-    type_income = db.Column(db.Boolean, default=False)
-    type_expense = db.Column(db.Boolean, default=False)
     type_name = db.Column(db.String(255), nullable=False)
     amount = db.Column(db.Integer)
+    category = db.Column(db.String(255), db.ForeignKey('spending_plan_income_categories.uid'), nullable=False)
 
     def to_json(self):
         return {
             "id": self.id,
             "uid": self.uid,
             "user_uid": self.user_uid,
-            "type_income": self.type_income,
-            "type_expense": self.type_expense,
             "type_name": self.type_name,
             "amount": self.amount
         }
 
 class spending_plan_expense_categories(db.Model):
     __tablename__ = "spending_plan_expense_categories"
+    id = db.Column(db.Integer, primary_key=True, autoincrement=True)
+    uid = db.Column(db.String(255), unique=True, nullable=False)
+    category_name = db.Column(db.String(255))
+
+    def to_json(self):
+        return {
+            "id": self.id,
+            "uid": self.uid,
+            "category_name": self.category_name
+        }
+
+class spending_plan_income_categories(db.Model):
+    __tablename__ = "spending_plan_income_categories"
     id = db.Column(db.Integer, primary_key=True, autoincrement=True)
     uid = db.Column(db.String(255), unique=True, nullable=False)
     category_name = db.Column(db.String(255))

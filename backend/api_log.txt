@@ -1,0 +1,6 @@
+- 2024-10-22 13:23:43.918787: Error adding expense to spending plan: (psycopg2.errors.ForeignKeyViolation) insert or update on table "spending_plan_expenses" violates foreign key constraint "fk_user_uid"
+DETAIL:  Key (user_uid)=(xE4QzvUm0TOUiy8vqLUXObDsINA3) is not present in table "users".
+
+[SQL: INSERT INTO spending_plan_expenses (uid, user_uid, type_name, amount, category) VALUES (%(uid)s, %(user_uid)s, %(type_name)s, %(amount)s, %(category)s) RETURNING spending_plan_expenses.id]
+[parameters: {'uid': 'e45a1567-e115-4369-9b2b-f36ecbea14c6', 'user_uid': 'xE4QzvUm0TOUiy8vqLUXObDsINA3', 'type_name': 'Barnehage', 'amount': '1500', 'category': 'ed5a0db4-5643-4f67-b237-5a30c13fc38f'}]
+(Background on this error at: https://sqlalche.me/e/20/gkpj)
