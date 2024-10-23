@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 import Card from "../../ui/Card.jsx";
 import TableRow from './TableRow.jsx';
@@ -6,8 +6,25 @@ import PlusSquareIcon from "../../assets/menusvgs/PlusSquareIcon.jsx";
 import MinusSquareIcon from "../../assets/menusvgs/MinusSquareIcon.jsx";
 import InputRow from "./InputRow.jsx";
 
-function ExpensesTable({ setTotalExpense, currentUser }) {
+function ExpensesTable({ setTotalExpense, currentUser, expensesData, refetch }) {
     const [showInputRow, setShowInputRow] = useState(false);
+    const [totalExpenseValue, setTotalExpenseValue] = useState(0);
+
+    useEffect(() => {
+        calculateTotalExpenses();
+    }, [expensesData])
+
+    const calculateTotalExpenses = () => {
+        let totalExpenses = 0;
+        expensesData && Object.keys(expensesData).map((key) => {
+            totalExpenses += expensesData[key]?.['post_data'].amount
+        })
+
+        setTotalExpenseValue(totalExpenses);
+        setTotalExpense(totalExpenses);
+    }
+
+
     return (
         <Card>
             <div className={`flex w-full ${!showInputRow && 'border-b'} border-grey-border-color h-10 items-center`}>
@@ -28,16 +45,15 @@ function ExpensesTable({ setTotalExpense, currentUser }) {
             </div>
             {
                 showInputRow && (
-                    <InputRow showInputRow={showInputRow} currentUser={currentUser} expense placeholder="Name of expense" />
+                    <InputRow refetch={refetch} showInputRow={showInputRow} currentUser={currentUser} expense placeholder="Name of expense" />
                 )
             }
-            <TableRow expense currentUser={currentUser} source="Food" amount={7000} />
-            <TableRow expense currentUser={currentUser} source="Mortgage" amount={12000} />
-            <TableRow expense currentUser={currentUser} source="Student loan" amount={2000} />
-            <TableRow expense currentUser={currentUser} source="Electricity" amount={200} />
-            <TableRow expense currentUser={currentUser} source="Spotify" amount={170} />
-            <TableRow expense currentUser={currentUser} source="Netflix" amount={229} />
-            <TableRow expense currentUser={currentUser} borderTop source="Total" amount={123345} />
+            {
+                expensesData && Object.keys(expensesData).map((key, index) => (
+                    <TableRow key={index} expense currentUser={currentUser} source={expensesData[key]['post_data'].type_name} amount={expensesData[key]['post_data'].amount} />
+                ))
+            }
+            <TableRow editable expense currentUser={currentUser} borderTop source="Total" amount={totalExpenseValue} />
         </Card>
     );
 }

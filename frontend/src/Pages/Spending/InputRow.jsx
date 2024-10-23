@@ -7,7 +7,7 @@ import useFetch from '../../hooks/useFetch.jsx';
 import SelectMenu from '../../ui/formcomponents/SelectMenu.jsx';
 import ErrorIcon from '../../assets/ErrorIcon.jsx';
 
-function InputRow({ currentUser, showInputRow, placeholder, expense }) {
+function InputRow({ currentUser, showInputRow, placeholder, expense, refetch }) {
 
     const { data: categories, loading: categoriesLoading, error: categoriesError } = useFetch(
         expense ?
@@ -38,6 +38,7 @@ function InputRow({ currentUser, showInputRow, placeholder, expense }) {
             sourceRef.current.value = '';
             amountRef.current.value = '';
             setSubmittedFlag(!submittedFlag);
+            refetch();
         }
     }, [response])
 

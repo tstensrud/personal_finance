@@ -1,7 +1,7 @@
 import { useContext, useState } from "react";
 import { AuthContext } from "../../context/AuthContext";
 
-
+import useFetch from "../../hooks/useFetch.jsx";
 
 import Card from "../../ui/Card";
 import ExpensesTable from "./ExpensesTable";
@@ -9,10 +9,13 @@ import IncomeTable from "./IncomeTable";
 import TableRow from "./TableRow";
 
 function Spending() {
-    const [totalIncome, setTotalIncome] = useState(0);
-    const [totalExpense, setTotalExpense] = useState(0);
     const { currentUser } = useContext(AuthContext);
 
+    const [totalIncome, setTotalIncome] = useState(0);
+    const [totalExpense, setTotalExpense] = useState(0);
+
+    const { data, loading, error, refetch } = useFetch(`/api/spending_plan/${currentUser.uid}/`);
+    
     return (
         <div className="flex justify-start gap-5 flex-wrap">
 
@@ -21,13 +24,13 @@ function Spending() {
                     Income
                 </div>
                 <div className="w-[28rem]">
-                    <IncomeTable setTotalIncome={setTotalIncome} currentUser={currentUser} />
+                    <IncomeTable incomeData={data?.data?.["income"]} setTotalIncome={setTotalIncome} currentUser={currentUser} refetch={refetch} />
                 </div>
                 <div className="flex items-center h-16 text-lg -tracking-wide">
                     Expenses
                 </div>
                 <div className="w-[28rem]">
-                    <ExpensesTable setTotalIncome={setTotalExpense} currentUser={currentUser} />
+                    <ExpensesTable expensesData={data?.data?.["expenses"]} setTotalExpense={setTotalExpense} currentUser={currentUser} refetch={refetch} />
                 </div>
             </div>
 
@@ -41,7 +44,7 @@ function Spending() {
                             Summary
                         </div>
                         <div className="w-full flex flex-col text-sm">
-                            <TableRow source="After spending" amount={35000} />
+                            <TableRow source="After spending" amount={totalIncome - totalExpense} />
                             <TableRow source="Savings" amount={35000} />
                         </div>
                         <div className="p-2 flex w-full border-b border-grey-border-color h-10 items-center text-light-grey">

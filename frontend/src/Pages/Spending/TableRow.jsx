@@ -2,7 +2,7 @@ import { useState } from "react";
 
 import InputRow from "./InputRow";
 
-function TableRow({ currentUser, expense, income, source, amount, percentage, borderTop }) {
+function TableRow({ currentUser, expense, income, source, amount, percentage, borderTop, editable }) {
     const [showOptions, setShowOptions] = useState(false);
     const [editRow, setShowEditRow] = useState(false);
 
@@ -25,7 +25,7 @@ function TableRow({ currentUser, expense, income, source, amount, percentage, bo
 
     return (
         <div className="flex flex-col text-sm">
-            <div onClick={handleOpenOptions} className={`flex cursor-pointer w-full h-8 items-center  ${!borderTop && 'hover:bg-tertiary-color-faded'} ${(borderTop || showOptions) && 'border-t border-grey-border-color'}`}>
+            <div onClick={editable && handleOpenOptions} className={`flex cursor-pointer w-full h-8 items-center  ${!borderTop && 'hover:bg-tertiary-color-faded'} ${(borderTop || showOptions) && 'border-t border-grey-border-color'}`}>
                 <div className="flex items-center h-full pl-2">
                     {source}
                 </div>

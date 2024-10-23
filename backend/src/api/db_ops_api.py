@@ -24,7 +24,7 @@ def get_income_categories() -> list[models.spending_plan_income_categories]:
     return categories
 
 
-def add_expense_spending_plan(uuid: str, name: str, amount: int, category_uid: str, post_type: str) -> bool:
+def add_post_to_spending_plan(uuid: str, name: str, amount: int, category_uid: str, post_type: str) -> bool:
     uid = str(uuid4())
 
     if post_type == "expense":
@@ -59,6 +59,17 @@ def get_user_spending_plan_expenses(uuid: str) -> tuple[models.spending_plan_exp
         spending_plan = db.session.query(models.spending_plan_expenses, models.spending_plan_expense_categories).join(
             models.spending_plan_expense_categories, models.spending_plan_expenses.category == models.spending_plan_expense_categories.uid).filter(
                 models.spending_plan_expenses.user_uid == uuid).all()
+        if spending_plan:
+            return spending_plan
+        return None
+    return None
+
+def get_user_spending_plan_income(uuid: str) -> tuple[models.spending_plan_income, models.spending_plan_income_categories]:
+    user = get_user(uuid)
+    if user:
+        spending_plan = db.session.query(models.spending_plan_income, models.spending_plan_income_categories).join(
+            models.spending_plan_income_categories, models.spending_plan_income.category == models.spending_plan_income_categories.uid).filter(
+                models.spending_plan_income.user_uid == uuid).all()
         if spending_plan:
             return spending_plan
         return None

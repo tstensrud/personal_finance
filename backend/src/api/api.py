@@ -31,6 +31,33 @@ def firebase_auth_required(f):
 @firebase_auth_required
 def get_spending_plan(uuid):
     user = dbo.get_user(uuid=uuid)
+    if user:
+        spending_plan_expenses = dbo.get_user_spending_plan_expenses(uuid=uuid)
+        spending_plan_income = dbo.get_user_spending_plan_income(uuid=uuid)
+        
+        data = {}
+        expenses_data = {}
+        income_data = {}
+        
+        # Extract income
+        for post, category in spending_plan_income:
+            post_data = {}
+            post_data["post_data"] = post.to_json()
+            post_data["category_data"] = category.to_json()
+            income_data[post.uid] = post_data
+
+        # Extract expenses
+        for post, category in spending_plan_expenses:
+            post_data = {}
+            post_data["post_data"] = post.to_json()
+            post_data["category_data"] = category.to_json()
+            expenses_data[post.uid] = post_data
+        
+        data["expenses"] = expenses_data
+        data["income"] = income_data
+        
+        return jsonify({"success": True, "data": data})
+    return jsonify({"success": False, "message": "User not found"})
 
 @api_bp.route('/add_post/<post_type>/<uuid>/', methods=['POST'])
 @firebase_auth_required
@@ -41,7 +68,7 @@ def add_post(post_type: str, uuid: str):
         if not amount_integer_check:
             return jsonify({"success": False, "message": "Amount must only contain digits."})
         
-        new_post = dbo.add_expense_spending_plan(
+        new_post = dbo.add_post_to_spending_plan(
             uuid=uuid,
             name=data["source"].strip(),
             amount=data["amount"],
