@@ -81,6 +81,7 @@ def add_post(post_type: str, uuid: str):
     return jsonify({"success": False, "message": "No data received"})
 
 @api_bp.route('/spending_categories/<category_type>/', methods=['GET'])
+@firebase_auth_required
 def get_spending_categories(category_type):
     if category_type == "expenses":
         categories = dbo.get_expense_categories()
@@ -93,3 +94,32 @@ def get_spending_categories(category_type):
             category_data[category.id] = category.to_json()
         return jsonify({"success": True, "data": category_data})
     return jsonify({"success": False, "message": f"Could not retrieve {category_type} categories"})
+
+@api_bp.route('/spending_plan/update_post/', methods=['PATCH'])
+@firebase_auth_required
+def update_post():
+    data = request.get_json()
+    if data:
+        updated_post = dbo.update_spending_plan_post(
+            post_uid=data['post_uid'],
+            expense=data['expense'],
+            data=data['data']
+        )
+        if updated_post:
+            return jsonify({"success": True})
+        return jsonify({"success": False, "message": "Could not update post"})    
+    return jsonify({"success": False, "message": "No data received"})
+
+@api_bp.route('/spending_plan/delete_post/', methods=['DELETE'])
+@firebase_auth_required
+def delete_post():
+    data = request.get_json()
+    if data:
+        deleted_post = dbo.delete_spending_plan_post(
+            post_uid=data['post_uid'],
+            expense=data['expense']
+        )
+        if deleted_post:
+            return jsonify({"success": True})
+        return jsonify({"success": False, "message": "Could not delete spending plan post"})    
+    return jsonify({"success": False, "message": "Did not receive any data"})

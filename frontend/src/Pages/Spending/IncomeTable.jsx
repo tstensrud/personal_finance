@@ -1,4 +1,6 @@
-import { useState, useEffect } from 'react';
+import { useState, useContext, useEffect } from 'react';
+
+import { GlobalContext } from '../../context/GlobalContext.jsx';
 
 // components
 import Card from "../../ui/Card.jsx";
@@ -8,12 +10,17 @@ import PlusSquareIcon from "../../assets/menusvgs/PlusSquareIcon.jsx";
 import MinusSquareIcon from "../../assets/menusvgs/MinusSquareIcon.jsx";
 
 function IncomeTable({ currentUser, setTotalIncome, incomeData, refetch }) {
+    const { currency } = useContext(GlobalContext);
+
     const [showInputRow, setShowInputRow] = useState(false);
     const [totalIncomeValue, setTotalIncomeValue] = useState(0);
+
+
 
     useEffect(() => {
         calculateTotalExpenses();
     }, [incomeData])
+
 
     const calculateTotalExpenses = () => {
         let totalIncome = 0;
@@ -24,7 +31,7 @@ function IncomeTable({ currentUser, setTotalIncome, incomeData, refetch }) {
         setTotalIncomeValue(totalIncome);
         setTotalIncome(totalIncome);
     }
-
+    
     return (
         <Card>
             <div className={`flex w-full ${!showInputRow && 'border-b'} border-grey-border-color h-10 items-center`}>
@@ -45,15 +52,26 @@ function IncomeTable({ currentUser, setTotalIncome, incomeData, refetch }) {
             </div>
             {
                 showInputRow && (
-                    <InputRow refetch={refetch} showInputRow={showInputRow} currentUser={currentUser} placeholder="Source of income" />
+                    <InputRow currentUser={currentUser} expense={false} refetch={refetch} showInputRow={showInputRow} placeholder="Source of income" />
                 )
             }
             {
                 incomeData && Object.keys(incomeData).map((key, index) => (
-                    <TableRow editable key={index} expense currentUser={currentUser} source={incomeData[key]['post_data'].type_name} amount={incomeData[key]['post_data'].amount} />
+                    <TableRow refetch={refetch} editable key={index} data={incomeData[key]?.['post_data']} />
                 ))
             }
-            <TableRow borderTop source="Total" amount={totalIncomeValue} />
+            <div className={`flex w-full h-8 items-center border-t border-grey-border-color text-sm`}>
+                <div className="flex items-center h-full pl-2">
+                    Total
+                </div>
+                <div className={`flex items-center h-full pr-2 flex-1 justify-end`}>
+
+                    {
+                        <>{totalIncomeValue.toLocaleString()} {currency}</>
+                    }
+                    
+                </div>
+            </div>
         </Card>
     );
 }

@@ -23,6 +23,17 @@ def get_income_categories() -> list[models.spending_plan_income_categories]:
     categories = db.session.query(models.spending_plan_income_categories).all()
     return categories
 
+def get_income_post(post_uid: str) -> models.spending_plan_income:
+    post = db.session.query(models.spending_plan_income).filter(models.spending_plan_income.uid == post_uid).first()
+    if post:
+        return post
+    return None
+
+def get_expense_post(post_uid: str) -> models.spending_plan_expenses:
+    post = db.session.query(models.spending_plan_expenses).filter(models.spending_plan_expenses.uid == post_uid).first()
+    if post:
+        return post
+    return None
 
 def add_post_to_spending_plan(uuid: str, name: str, amount: int, category_uid: str, post_type: str) -> bool:
     uid = str(uuid4())
@@ -74,3 +85,30 @@ def get_user_spending_plan_income(uuid: str) -> tuple[models.spending_plan_incom
             return spending_plan
         return None
     return None
+
+def update_spending_plan_post(post_uid: str, expense: bool, data: int) -> bool:
+    if expense:
+        post = get_expense_post(post_uid=post_uid)
+    else:
+        post = get_income_post(post_uid=post_uid)
+    post.amount = data
+    try:
+        db.session.commit()
+        return True
+    except Exception as e:
+        db.session.rollback()
+        log(f"Could not update post: {e}")
+        return False
+
+def delete_spending_plan_post(post_uid: str, expense: bool) -> bool:
+    if expense:
+        post = get_expense_post(post_uid=post_uid)
+    else:
+        post = get_income_post(post_uid=post_uid)
+    try:
+        db.session.delete(post)
+        db.session.commit()
+        return True
+    except Exception as e:
+        log(f"Could not delete spending plan post: {e}")
+        return False

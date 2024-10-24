@@ -6,6 +6,7 @@ import useFetch from '../../hooks/useFetch.jsx';
 
 import SelectMenu from '../../ui/formcomponents/SelectMenu.jsx';
 import ErrorIcon from '../../assets/ErrorIcon.jsx';
+import LoadingSpinner from '../../ui/widgets/LoadingSpinner.jsx';
 
 function InputRow({ currentUser, showInputRow, placeholder, expense, refetch }) {
 
@@ -86,7 +87,11 @@ function InputRow({ currentUser, showInputRow, placeholder, expense, refetch }) 
                         <input ref={amountRef} onChange={handleChange} id="amount" name="amount" type="text" className="top-0 border rounded-lg border-grey-border-color pl-2 w-full h-8 bg-secondary-color hover:border-accent-color-main focus:border-accent-color-main outline-none" placeholder="Amount" required />
                     </div>
                     <div className="flex items-center h-10 w-full">
-                        <button type="submit" className="pl-3 pr-3 rounded-full border border-grey-border-color  hover:border-accent-color-main focus:border-accent-color-main h-8 bg-secondary-color outline-none">Add</button>
+                        <button type="submit" className="pl-3 pr-3 w-24 rounded-full border border-grey-border-color  hover:border-accent-color-main focus:border-accent-color-main h-8 bg-secondary-color outline-none">
+                            {
+                                loading ? <LoadingSpinner /> : 'Add'
+                            }
+                        </button>
                     </div>
                 </form>
             </div>

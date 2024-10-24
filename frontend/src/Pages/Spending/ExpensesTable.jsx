@@ -1,4 +1,6 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
+
+import { GlobalContext } from '../../context/GlobalContext.jsx';
 
 import Card from "../../ui/Card.jsx";
 import TableRow from './TableRow.jsx';
@@ -6,7 +8,9 @@ import PlusSquareIcon from "../../assets/menusvgs/PlusSquareIcon.jsx";
 import MinusSquareIcon from "../../assets/menusvgs/MinusSquareIcon.jsx";
 import InputRow from "./InputRow.jsx";
 
-function ExpensesTable({ setTotalExpense, currentUser, expensesData, refetch }) {
+function ExpensesTable({ currentUser, setTotalExpense, expensesData, refetch }) {
+    const { currency } = useContext(GlobalContext);
+    
     const [showInputRow, setShowInputRow] = useState(false);
     const [totalExpenseValue, setTotalExpenseValue] = useState(0);
 
@@ -45,15 +49,26 @@ function ExpensesTable({ setTotalExpense, currentUser, expensesData, refetch }) 
             </div>
             {
                 showInputRow && (
-                    <InputRow refetch={refetch} showInputRow={showInputRow} currentUser={currentUser} expense placeholder="Name of expense" />
+                    <InputRow currentUser={currentUser} refetch={refetch} showInputRow={showInputRow} expense placeholder="Name of expense" />
                 )
             }
             {
                 expensesData && Object.keys(expensesData).map((key, index) => (
-                    <TableRow key={index} expense currentUser={currentUser} source={expensesData[key]['post_data'].type_name} amount={expensesData[key]['post_data'].amount} />
+                    <TableRow refetch={refetch} editable key={index} expense={true} data={expensesData[key]['post_data']} />
                 ))
             }
-            <TableRow editable expense currentUser={currentUser} borderTop source="Total" amount={totalExpenseValue} />
+            <div className={`flex w-full h-8 items-center border-t border-grey-border-color text-sm`}>
+                <div className="flex items-center h-full pl-2">
+                    Total
+                </div>
+                <div className={`flex items-center h-full pr-2 flex-1 justify-end`}>
+
+                    {
+                        <>{totalExpenseValue.toLocaleString()} {currency}</>
+                    }
+
+                </div>
+            </div>
         </Card>
     );
 }
