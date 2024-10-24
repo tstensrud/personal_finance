@@ -47,11 +47,9 @@ function ExpensesTable({ currentUser, setTotalExpense, expensesData, refetch }) 
                     </div>
                 </div>
             </div>
-            {
-                showInputRow && (
-                    <InputRow currentUser={currentUser} refetch={refetch} showInputRow={showInputRow} expense placeholder="Name of expense" />
-                )
-            }
+
+            <InputRow currentUser={currentUser} refetch={refetch} showInputRow={showInputRow} expense placeholder="Name of expense" />
+
             {
                 expensesData && Object.keys(expensesData).map((key, index) => (
                     <TableRow refetch={refetch} editable key={index} expense={true} data={expensesData[key]['post_data']} />

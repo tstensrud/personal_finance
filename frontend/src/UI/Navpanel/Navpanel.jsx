@@ -21,9 +21,13 @@ function NavPanel({ showMenu, setShowMenu, setActiveIndex, activeIndex }) {
         { text: "Debts", url: "debts", svg: <DebtsIcon activeIndex={activeIndex} /> },
         { text: "Spending plan", url: "spending", svg: <SpendingIcon activeIndex={activeIndex} /> },
     ];
-    
+
     return (
-        <div className="flex flex-col w-full h-full bg-tertiary-color rounded-lg">
+        <div className="flex flex-col w-full h-full border-r border-grey-border-color ">
+            <div className="flex pt-2 items-end ">
+                <CollapseMenuItem showMenu={showMenu} setShowMenu={setShowMenu} />
+            </div>
+
             <div className={`flex flex-col h-20 items-center justify-center`}>
                 <div className={`justify-center h-full flex items-center`}>
                     <AppIcon dimensions={30} />
@@ -33,15 +37,11 @@ function NavPanel({ showMenu, setShowMenu, setActiveIndex, activeIndex }) {
             <div className={`flex flex-col items-center pl-2 pr-2 `}>
                 {
                     menuItems.map((item, index) => (
-                        <NavItem lastIndex={index === (menuItems.length - 1)} showMenu={showMenu} key={index} index={index} text={item.text} url={item.url} setActiveIndex={setActiveIndex} activeIndex={activeIndex} svg={item.svg && React.cloneElement(item.svg, { index })} />
+                        <NavItem  showMenu={showMenu} key={index} index={index} text={item.text} url={item.url} setActiveIndex={setActiveIndex} activeIndex={activeIndex} svg={item.svg && React.cloneElement(item.svg, { index })} />
                     ))
                 }
             </div>
-            <div className="flex flex-1 items-end ">
-                <div className="group pb-2 w-full">
-                    <CollapseMenuItem showMenu={showMenu} setShowMenu={setShowMenu} />
-                </div>
-            </div>
+
         </div>
     );
 }

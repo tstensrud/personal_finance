@@ -10,13 +10,14 @@ function Layout({ children }) {
     const menuRef = useRef(null);
 
     return (
-        <div className="flex flex-row p-2 w-full h-full bg-secondary-color">
-            <div ref={menuRef} className={`${showMenu ? 'animate-slideFromLeft' : 'animate-slideOutLeft'}`}>
+        <div className="flex flex-row  w-full h-full bg-secondary-color">
+            <div ref={menuRef} className={`${showMenu ? 'w-[220px]' : 'w-[70px]'} duration-300 text-nowrap`}>
                 <NavPanel activeIndex={activeIndex} setActiveIndex={setActiveIndex} showMenu={showMenu} setShowMenu={setShowMenu} />
             </div>
-            <div className="flex flex-col flex-1 pl-5 pr-5 rounded-lg text-primary-color">
+
+            <div className="flex flex-col flex-1 rounded-lg text-primary-color">
                 <PageHeader activeIndex={activeIndex} setActiveIndex={setActiveIndex} />
-                <div className="flex flex-col w-full h-full flex-wrap">
+                <div className="flex flex-col w-full h-full flex-wrap pr-5 pl-5">
                     <Outlet>
                         {children}
                     </Outlet>

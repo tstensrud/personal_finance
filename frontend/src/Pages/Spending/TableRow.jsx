@@ -6,6 +6,7 @@ import useUpdateData from '../../hooks/useUpdateData.jsx';
 import useDeleteData from '../../hooks/useDeleteData.jsx';
 
 import LoadingSpinner from '../../ui/widgets/LoadingSpinner.jsx'
+import DropdownMenu from "../../ui/widgets/DropdownMenu.jsx";
 
 function TableRow({ expense, percentage, borderTop, editable, data, refetch }) {
     const { currency } = useContext(GlobalContext);
@@ -22,11 +23,11 @@ function TableRow({ expense, percentage, borderTop, editable, data, refetch }) {
         const updateData = async () => {
             if (updatedData.user_uid && updatedData.post_uid && updatedData.data) {
                 await handleUpdateSubmit();
-            } 
+            }
         }
         updateData();
     }, [updatedData]);
-    
+
     useEffect(() => {
         if (updateResponse?.success) {
             setUpdatedData({});
@@ -34,7 +35,7 @@ function TableRow({ expense, percentage, borderTop, editable, data, refetch }) {
             setShowOptions(false);
             refetch();
         }
-    },[updateResponse]);
+    }, [updateResponse]);
 
     useEffect(() => {
         const deleteData = async () => {
@@ -43,7 +44,7 @@ function TableRow({ expense, percentage, borderTop, editable, data, refetch }) {
             }
         }
         deleteData();
-    },[deletedData]);
+    }, [deletedData]);
 
     useEffect(() => {
         if (deleteResponse?.success) {
@@ -51,7 +52,7 @@ function TableRow({ expense, percentage, borderTop, editable, data, refetch }) {
             setShowOptions(false);
             refetch();
         }
-    },[deleteResponse]);
+    }, [deleteResponse]);
 
     // Handlers
     const handleUpdateChange = (e) => {
@@ -99,7 +100,7 @@ function TableRow({ expense, percentage, borderTop, editable, data, refetch }) {
 
     return (
         <div className="flex flex-col text-sm">
-            <div onClick={editable ? handleOpenOptions : null} className={`flex cursor-pointer w-full h-8 items-center  ${!borderTop && 'hover:bg-tertiary-color-faded'} ${(borderTop || showOptions) && 'border-t border-grey-border-color'}`}>
+            <div onClick={editable ? handleOpenOptions : null} className={`flex cursor-pointer w-full h-8 items-center  ${!borderTop && 'hover:bg-accent-color-main-faded'} ${(borderTop || showOptions) && 'border-t border-grey-border-color'}`}>
                 <div className="flex items-center h-full pl-2">
                     {data?.type_name}
                 </div>
@@ -107,7 +108,7 @@ function TableRow({ expense, percentage, borderTop, editable, data, refetch }) {
                     {
                         editRow ? (
                             <div className="flex w-full h-full justify-end">
-                                <input onChange={handleUpdateChange} name="newValue" type="text" className="top-0 border border-grey-border-color pl-2 w-1/3 h-full bg-secondary-color hover:border-accent-color-main focus:border-accent-color-main outline-none" placeholder="New value" />
+                                <input onChange={handleUpdateChange} name="newValue" type="text" className="top-0 border border-grey-border-color pl-2 w-1/3 h-full rounded-lg bg-secondary-color hover:border-accent-color-main focus:border-accent-color-main outline-none" placeholder="New value" />
                             </div>
                         ) : (
                             <>
@@ -115,9 +116,9 @@ function TableRow({ expense, percentage, borderTop, editable, data, refetch }) {
                                     data?.amount.toLocaleString()
                                 }
                                 <div className="pl-2">
-                                {
-                                    percentage ? '%' : currency
-                                }
+                                    {
+                                        percentage ? '%' : currency
+                                    }
                                 </div>
                             </>
                         )
@@ -125,40 +126,42 @@ function TableRow({ expense, percentage, borderTop, editable, data, refetch }) {
                 </div>
 
             </div>
-            {
-                showOptions && (
-                    <div className="flex p-2 bg-tertiary-color w-full justify-center gap-3 items-center border-b border-b-tertiary-color-faded">
-                        <div>
-                            <button onClick={handleDeleteClick} className="pt-1 pb-1 w-20 border border-grey-border-color rounded-full hover:border-accent-color-main">
-                                {
-                                    deleteLoading ? <LoadingSpinner /> : 'Delete'
-                                }
-                            </button>
-                        </div>
-                        <div>
-                            <button onClick={handleCloseClick} className="pt-1 pb-1 w-20 border border-grey-border-color rounded-full hover:border-accent-color-main">Close</button>
-                        </div>
-                        <div>
-                            <button onClick={handleEditClick} className="pt-1 pb-1 w-20 border border-grey-border-color rounded-full hover:border-accent-color-main">
-                                {
-                                    editRow ? (
-                                        'Cancel'
-                                    ) : (
-                                        'Edit'
-                                    )
-                                }
-                            </button>
-                        </div>
-                        <div>
-                            <button onClick={handleUpdateClick} className="pt-1 pb-1 w-20 border border-grey-border-color rounded-full hover:border-accent-color-main">
-                                {
-                                    updateLoading ? <LoadingSpinner /> : 'Update'
-                                } 
-                            </button>
-                        </div>
+            <DropdownMenu showVariable={showOptions}>
+                <div className="flex p-2 bg-tertiary-color w-full justify-center gap-3 items-center border-b border-b-tertiary-color-faded">
+                    <div>
+                        <button onClick={handleDeleteClick} className="pt-1 pb-1 w-20 border border-grey-border-color rounded-full hover:border-accent-color-main">
+                            {
+                                deleteLoading ? <LoadingSpinner /> : 'Delete'
+                            }
+                        </button>
                     </div>
-                )
-            }
+                    <div>
+                        <button onClick={handleCloseClick} className="pt-1 pb-1 w-20 border border-grey-border-color rounded-full hover:border-accent-color-main">Close</button>
+                    </div>
+                    <div>
+                        <button onClick={handleEditClick} className="pt-1 pb-1 w-20 border border-grey-border-color rounded-full hover:border-accent-color-main">
+                            {
+                                editRow ? (
+                                    'Cancel'
+                                ) : (
+                                    'Edit'
+                                )
+                            }
+                        </button>
+                    </div>
+                    <div>
+                        {
+                            editRow && (
+                                <button onClick={handleUpdateClick} className="pt-1 pb-1 w-20 border border-grey-border-color rounded-full hover:border-accent-color-main">
+                                    {
+                                        updateLoading ? <LoadingSpinner /> : 'Update'
+                                    }
+                                </button>
+                            )
+                        }
+                    </div>
+                </div>
+            </DropdownMenu>
         </div>
     );
 }

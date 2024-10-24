@@ -39,7 +39,7 @@ function SelectMenu({ menuTitle, options, onClick, resetFlag }) {
             </div>
             {
                 showDropdown && (
-                    <div className="absolute z-10 h-60 overflow-y-auto top-9 w-full rounded-lg border border-accent-color-main bg-secondary-color outline-none">
+                    <div className="absolute z-10 h-28 overflow-y-auto top-9 w-full rounded-lg border border-accent-color-main bg-secondary-color outline-none">
 
                         {
                             Object.keys(options)

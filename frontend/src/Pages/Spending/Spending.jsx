@@ -9,6 +9,7 @@ import ExpensesTable from "./ExpensesTable";
 import IncomeTable from "./IncomeTable";
 import TableRow from "./TableRow";
 import SummaryRow from './SummaryRow.jsx'
+import LoadingBar from "../../ui/widgets/LoadingBar.jsx";
 
 function Spending() {
     const { currentUser } = useContext(AuthContext);
@@ -23,7 +24,6 @@ function Spending() {
     const [totalFood, setTotalFood] = useState(0);
     const [totalLiving, setTotalLiving] = useState(0);
     const [debts, setTotalDebts] = useState(0);
-    const [savings, setTotalSavings] = useState(0);
 
     useEffect(() => {
         sumUpTotalLivingSpenditure();
@@ -64,27 +64,26 @@ function Spending() {
 
     return (
         <div className="flex justify-start gap-5 flex-wrap">
-
-            <div className="flex flex-col">
+            <div className="flex flex-col w-full sm:w-[28rem]">
                 <div className="flex items-center h-16 text-lg -tracking-wide">
                     Income
                 </div>
-                <div className="w-[28rem]">
+                <div className="w-full">
                     <IncomeTable currentUser={currentUser} incomeData={data?.data?.income} setTotalIncome={setTotalIncome} refetch={refetch} />
                 </div>
                 <div className="flex items-center h-16 text-lg -tracking-wide">
                     Expenses
                 </div>
-                <div className="w-[28rem]">
+                <div className="w-full">
                     <ExpensesTable currentUser={currentUser} expensesData={data?.data?.expenses} setTotalExpense={setTotalExpense} refetch={refetch} />
                 </div>
             </div>
 
-            <div className="flex flex-col">
+            <div className="flex flex-col w-full sm:w-[28rem]">
                 <div className="flex items-center h-16 text-lg -tracking-wide">
                     Monthly status
                 </div>
-                <div className="w-[28rem]">
+                <div className="w-full">
                     <Card>
                         <div className="p-2 flex w-full border-b border-grey-border-color h-10 items-center text-light-grey">
                             Summary

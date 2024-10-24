@@ -31,7 +31,7 @@ function IncomeTable({ currentUser, setTotalIncome, incomeData, refetch }) {
         setTotalIncomeValue(totalIncome);
         setTotalIncome(totalIncome);
     }
-    
+
     return (
         <Card>
             <div className={`flex w-full ${!showInputRow && 'border-b'} border-grey-border-color h-10 items-center`}>
@@ -50,11 +50,10 @@ function IncomeTable({ currentUser, setTotalIncome, incomeData, refetch }) {
                     </div>
                 </div>
             </div>
-            {
-                showInputRow && (
+
+
                     <InputRow currentUser={currentUser} expense={false} refetch={refetch} showInputRow={showInputRow} placeholder="Source of income" />
-                )
-            }
+
             {
                 incomeData && Object.keys(incomeData).map((key, index) => (
                     <TableRow refetch={refetch} editable key={index} data={incomeData[key]?.['post_data']} />
@@ -69,7 +68,7 @@ function IncomeTable({ currentUser, setTotalIncome, incomeData, refetch }) {
                     {
                         <>{totalIncomeValue.toLocaleString()} {currency}</>
                     }
-                    
+
                 </div>
             </div>
         </Card>

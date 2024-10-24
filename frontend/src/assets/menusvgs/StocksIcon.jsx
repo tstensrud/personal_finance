@@ -1,9 +1,9 @@
-import { svgDimension, svgClassList, svgActiveIndex, svgNoneActive } from './svgSettings';
+import { svgDimensionGoogleIcons } from './svgSettings';
 
 function StocksIcon({ activeIndex, index }) {
     return (
-        <svg xmlns="http://www.w3.org/2000/svg" width={svgDimension} height={svgDimension} viewBox="0 0 24 24" strokeLinecap="round" strokeLinejoin="round" className={`${activeIndex === index ? svgActiveIndex : svgNoneActive} ${svgClassList}`}>
-            <polyline points="22 12 18 12 15 21 9 3 6 12 2 12"></polyline>
+        <svg xmlns="http://www.w3.org/2000/svg" width={svgDimensionGoogleIcons} height={svgDimensionGoogleIcons} viewBox="0 -960 960 960" strokeLinecap="round" strokeLinejoin="round" className={`${activeIndex === index ? 'fill-accent-color-main' : 'fill-primary-color group-hover:fill-primary-color'} stroke-2  duration-100`}>
+            <path d="m136-240-56-56 296-298 160 160 208-206H640v-80h240v240h-80v-104L536-320 376-480 136-240Z" />
         </svg>
     );
 }

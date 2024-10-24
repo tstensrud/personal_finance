@@ -1,79 +1,77 @@
 import { useState } from 'react';
-import VerticalDots from '../../assets/VerticalDots.jsx';
-import NavItem from '../../ui/navpanel/NavItem.jsx';
+
 import DeleteIcon from '../../assets/menusvgs/DeleteIcon.jsx';
 import EditIcon from '../../assets/menusvgs/EditIcon.jsx';
 import CloseIcon from '../../assets/menusvgs/CloseIcon.jsx'
+import DropdownMenu from '../../ui/widgets/DropdownMenu.jsx'
 
 
 function TableRow() {
     const [showOptions, setShowOptions] = useState(false);
 
-    const handleShowOptions = () => {
-        setShowOptions(!showOptions)
+    const handleShowOptionsClick = () => {
+        if (!showOptions) {
+            setShowOptions(true);
+        }
     }
     return (
-        <tr className="border-t border-grey-border-color hover:bg-tertiary-color-faded text-sm">
-            <td className="relative items-center w-[5%] text-center justify-center h-10">
-                <div onClick={handleShowOptions} className="h-full w-full flex justify-center items-center group cursor-pointer">
-                    <VerticalDots dimensions={20} />
+        <div onClick={handleShowOptionsClick} className={`cursor-pointer flex-col justify-center text-sm border-b border-grey-border-color w-full bg-tertiary-color ${!showOptions && 'hover:bg-accent-color-main-faded'} `}>
+            <div className="flex">
+                <div className="flex items-center w-[10%] h-10 justify-start pl-5">
+                    Ticker
                 </div>
-                {
-                    showOptions && (
-                        <div className="absolute bg-tertiary-color border border-grey-border-color rounded-lg p-2 w-32 top-5 left-full z-50">
-                            <div onClick={null} className={`group cursor-pointer flex w-full h-full`}>
-                                <div className={`w-full flex`}>
-                                    <div className={`flex items-center h-full `}>
-                                        <DeleteIcon />
-                                    </div>
-                                    <div className={`pl-3 font-semibold text-sm text-light-grey group-hover:text-primary-color flex flex-1 items-center h-full transition duration-100 overflow-hidden`}>
-                                        Delete
-                                    </div>
-                                </div>
-                            </div>
+                <div className="hidden sm:flex sm:w-[30%] items-center h-10 justify-center">
+                    Name
+                </div>
+                <div className="flex items-center w-1/2 sm:w-[20%] h-10 justify-center">
+                    Quantity
+                </div>
+                <div className="hidden sm:flex sm:w-[20%] items-center h-10 justify-center">
+                    Last closing
+                </div>
+                <div className="flex items-center justify-end w-[40%] sm:w-[20%] h-10 pr-5">
+                    Value
+                </div>
+            </div>
+            <DropdownMenu showVariable={showOptions} >
+                <div className="flex items-center justify-center gap-20 w-full">
 
-                            <div onClick={null} className={`group cursor-pointer flex w-full h-full pt-3`}>
-                                <div className={`w-full flex`}>
-                                    <div className={`flex items-center h-full `}>
-                                        <EditIcon />
-                                    </div>
-                                    <div className={`pl-3 font-semibold text-sm text-light-grey group-hover:text-primary-color flex flex-1 items-center h-full transition duration-100 overflow-hidden`}>
-                                        Edit
-                                    </div>
-                                </div>
+                    <div onClick={null} className={`group cursor-pointer flex h-10 items-center`}>
+                        <div className={`w-full h-full flex `}>
+                            <div className={`flex items-center h-full `}>
+                                <DeleteIcon />
                             </div>
-
-                            <div onClick={handleShowOptions} className={`group cursor-pointer flex w-full h-full pt-3`}>
-                                <div className={`w-full flex`}>
-                                    <div className={`flex items-center h-full `}>
-                                        <CloseIcon />
-                                    </div>
-                                    <div className={`pl-3 font-semibold text-sm text-light-grey group-hover:text-primary-color flex flex-1 items-center h-full transition duration-100 overflow-hidden`}>
-                                        Close
-                                    </div>
-                                </div>
+                            <div className={`pl-1 font-semibold text-sm text-light-grey group-hover:text-primary-color flex flex-1 items-center h-full  duration-100 overflow-hidden`}>
+                                Delete
                             </div>
-
                         </div>
-                    )
-                }
-            </td>
-            <td className="w-[25%] h-10 text-center">
-                Apple
-            </td>
-            <td className="w-[10%] h-10 text-center">
-                AAPL
-            </td>
-            <td className="w-[20%] h-10 text-center">
-                5
-            </td>
-            <td className="w-[20%] h-10 text-center">
-                $ 123
-            </td>
-            <td className="w-[20%] h-10 text-center">
-                $ {5 * 123}
-            </td>
-        </tr>
+                    </div>
+
+                    <div onClick={null} className={`group cursor-pointer flex h-10 items-center`}>
+                        <div className={`w-full h-full flex`}>
+                            <div className={`flex items-center h-full `}>
+                                <EditIcon />
+                            </div>
+                            <div className={`pl-1 font-semibold text-sm text-light-grey group-hover:text-primary-color flex flex-1 items-center h-full  duration-100 overflow-hidden`}>
+                                Edit
+                            </div>
+                        </div>
+                    </div>
+
+                    <div onClick={() => setShowOptions(false)} className={`group cursor-pointer flex h-10 items-center`}>
+                        <div className={`w-full h-full flex`}>
+                            <div className={`flex items-center h-full `}>
+                                <CloseIcon />
+                            </div>
+                            <div className={`pl-1 font-semibold text-sm text-light-grey group-hover:text-primary-color flex flex-1 items-center h-full  duration-100 overflow-hidden`}>
+                                Close
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </DropdownMenu>
+        </div>
     );
 }
 

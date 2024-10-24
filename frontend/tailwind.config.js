@@ -6,18 +6,18 @@ export default {
   ],
   theme: {
     colors: {
-      'primary-color': '#FEFEFE',
-      'secondary-color': "#060E0E",
-      'tertiary-color': "#121c26",
+      'primary-color': '#e6e6ef',
+      'secondary-color': "#11121a",
+      'tertiary-color': "#11121a",
       'tertiary-color-faded': "#202933",
-      "accent-color-main": "#00FFA7",
-      'accent-color-main-faded': '#122c1c',
+      "accent-color-main": "#5e63ff",
+      'accent-color-main-faded': '#222533',
       "accent-color-secondary": "#7E67F6",
       "accent-color-secondary-faded": "#37305c",
       'grey': "#2C2C2C",
       'grey-opacity': '#2c2c2c3b',
       'grey-border-color': "rgb(43, 53, 64)",
-      'light-grey': "#666666"
+      'light-grey': "#b0b3c1"
 
 
     },
@@ -40,14 +40,6 @@ export default {
         ],
       },
       keyframes: {
-        slideFromLeft: {
-          '0%': {width: '70px'},
-          '100%': {width: '220px'}
-        },
-        slideOutLeft: {
-          '0%': {width: '220px'},
-          '100%': { width: '70px'}
-        },
         slide: {
           '0%' : {left: '-30%'},
           '50%': {left: '50%'},
@@ -55,8 +47,6 @@ export default {
         },
       },
       animation: {
-        slideFromLeft: 'slideFromLeft 0.1s ease-in forwards',
-        slideOutLeft: 'slideOutLeft 0.1s ease-in forwards',
         slide: 'slide 3.0s linear infinite',
       }
     },
