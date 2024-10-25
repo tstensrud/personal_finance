@@ -1,8 +1,8 @@
-import json
 from firebase_admin import auth
 from flask import Blueprint, jsonify, request
 from functools import wraps
 from . import db_ops_api as dbo
+from . import securities
 from .globals import is_int
 
 api_bp = Blueprint("api", __name__)
@@ -23,6 +23,31 @@ def firebase_auth_required(f):
             return({"success": False, "message": str(e)}), 401
         return f(*args, **kwargs)
     return decorated_function
+
+##########################
+# SECURITIES             #
+##########################
+@api_bp.route('/securities/add/<uuid>/', methods=['POST'])
+@firebase_auth_required
+def add_security(uuid: str):
+    user = dbo.get_user(uuid=uuid)
+    if user:
+        data = request.get_json()
+        if data:
+            is_quantaty_int = is_int(data['quantity'].strip())
+            if not is_quantaty_int:
+                return jsonify({"success": False, "message": "Quantity must only be whole numbers"})
+            
+            new_security = dbo.add_security(
+                uuid=uuid,
+                ticker=data["ticker"].strip(),
+                quantity=data["quantity"].strip()
+            )
+            if new_security:
+                return jsonify({"success": True})
+            return jsonify({"success": False, "message": "Could not add security"})
+        return jsonify({"success": False, "message": "No data received"})
+    return jsonify({"success": False, "message": "User not found"})
 
 ##########################
 # SPENDING PLAN / BUDGET #

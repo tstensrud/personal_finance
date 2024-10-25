@@ -1,9 +1,10 @@
 import { useState } from 'react';
 
-import DeleteIcon from '../../assets/menusvgs/DeleteIcon.jsx';
-import EditIcon from '../../assets/menusvgs/EditIcon.jsx';
-import CloseIcon from '../../assets/menusvgs/CloseIcon.jsx'
 import DropdownMenu from '../../ui/widgets/DropdownMenu.jsx'
+import DeleteButton from '../../ui/formcomponents/DeleteButton.jsx';
+import CloseButton from '../../ui/formcomponents/CloseButton.jsx';
+import EditButton from '../../ui/formcomponents/EditButton.jsx';
+import UpdateButton from '../../ui/formcomponents/UpdateButton.jsx';
 
 
 function TableRow() {
@@ -14,6 +15,7 @@ function TableRow() {
             setShowOptions(true);
         }
     }
+
     return (
         <div onClick={handleShowOptionsClick} className={`cursor-pointer flex-col justify-center text-sm border-b border-grey-border-color w-full bg-tertiary-color ${!showOptions && 'hover:bg-accent-color-main-faded'} `}>
             <div className="flex">
@@ -34,41 +36,10 @@ function TableRow() {
                 </div>
             </div>
             <DropdownMenu showVariable={showOptions} >
-                <div className="flex items-center justify-center gap-20 w-full">
-
-                    <div onClick={null} className={`group cursor-pointer flex h-10 items-center`}>
-                        <div className={`w-full h-full flex `}>
-                            <div className={`flex items-center h-full `}>
-                                <DeleteIcon />
-                            </div>
-                            <div className={`pl-1 font-semibold text-sm text-light-grey group-hover:text-primary-color flex flex-1 items-center h-full  duration-100 overflow-hidden`}>
-                                Delete
-                            </div>
-                        </div>
-                    </div>
-
-                    <div onClick={null} className={`group cursor-pointer flex h-10 items-center`}>
-                        <div className={`w-full h-full flex`}>
-                            <div className={`flex items-center h-full `}>
-                                <EditIcon />
-                            </div>
-                            <div className={`pl-1 font-semibold text-sm text-light-grey group-hover:text-primary-color flex flex-1 items-center h-full  duration-100 overflow-hidden`}>
-                                Edit
-                            </div>
-                        </div>
-                    </div>
-
-                    <div onClick={() => setShowOptions(false)} className={`group cursor-pointer flex h-10 items-center`}>
-                        <div className={`w-full h-full flex`}>
-                            <div className={`flex items-center h-full `}>
-                                <CloseIcon />
-                            </div>
-                            <div className={`pl-1 font-semibold text-sm text-light-grey group-hover:text-primary-color flex flex-1 items-center h-full  duration-100 overflow-hidden`}>
-                                Close
-                            </div>
-                        </div>
-                    </div>
-
+                <div className="flex items-center justify-center h-10 gap-5 w-full">
+                    <DeleteButton />
+                    <EditButton />
+                    <CloseButton onClick={() => setShowOptions(false)} />
                 </div>
             </DropdownMenu>
         </div>

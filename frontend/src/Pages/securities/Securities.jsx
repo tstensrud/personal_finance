@@ -1,8 +1,20 @@
+import {AuthContext} from '../../context/AuthContext.jsx';
+import { useContext } from 'react';
+
+import useFetch from '../../hooks/useFetch.jsx';
+
 import TableRow from './TableRow.jsx';
+import AddSecurity from './AddSecurity.jsx';
 
 function Stocks() {
+
+    const { currentUser } = useContext(AuthContext);
+    
     return (
-        <div className="flex flex-col w-full justify-center pt-10">
+        <div className="flex flex-col w-full justify-center">
+            <div className="w-[450px]">
+                <AddSecurity currentUser={currentUser} />
+            </div>
             <div className="flex text-light-grey justify-center border-b border-grey-border-color w-full bg-tertiary-color pb-2">
                 <div className="flex items-end w-[10%] h-20 justify-start pl-5">
                     Ticker
@@ -20,11 +32,6 @@ function Stocks() {
                     Value
                 </div>
             </div>
-            <TableRow />
-            <TableRow />
-            <TableRow />
-            <TableRow />
-            <TableRow />
         </div>
     );
 }

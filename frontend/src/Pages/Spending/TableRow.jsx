@@ -5,8 +5,11 @@ import { GlobalContext } from '../../context/GlobalContext.jsx';
 import useUpdateData from '../../hooks/useUpdateData.jsx';
 import useDeleteData from '../../hooks/useDeleteData.jsx';
 
-import LoadingSpinner from '../../ui/widgets/LoadingSpinner.jsx'
 import DropdownMenu from "../../ui/widgets/DropdownMenu.jsx";
+import DeleteButton from '../../ui/formcomponents/DeleteButton.jsx';
+import CloseButton from '../../ui/formcomponents/CloseButton.jsx';
+import EditButton from '../../ui/formcomponents/EditButton.jsx';
+import UpdateButton from '../../ui/formcomponents/UpdateButton.jsx';
 
 function TableRow({ expense, percentage, borderTop, editable, data, refetch }) {
     const { currency } = useContext(GlobalContext);
@@ -59,14 +62,12 @@ function TableRow({ expense, percentage, borderTop, editable, data, refetch }) {
         setNewValue(e.target.value);
     }
 
-    const handleEditClick = (e) => {
-        e.preventDefault();
+    const handleEditClick = () => {
         setShowEditRow(!editRow);
         setUpdatedData({});
     }
 
-    const handleCloseClick = (e) => {
-        e.preventDefault();
+    const handleCloseClick = () => {
         setShowOptions(false);
         setShowEditRow(false);
         setUpdatedData({})
@@ -79,8 +80,7 @@ function TableRow({ expense, percentage, borderTop, editable, data, refetch }) {
         }
     }
 
-    const handleUpdateClick = (e) => {
-        e.preventDefault();
+    const handleUpdateClick = () => {
         setUpdatedData({
             user_uid: data.user_uid,
             post_uid: data.uid,
@@ -89,8 +89,7 @@ function TableRow({ expense, percentage, borderTop, editable, data, refetch }) {
         });
     }
 
-    const handleDeleteClick = (e) => {
-        e.preventDefault();
+    const handleDeleteClick = () => {
         setDeleteData({
             uuid: data.user_uid,
             post_uid: data.uid,
@@ -128,38 +127,15 @@ function TableRow({ expense, percentage, borderTop, editable, data, refetch }) {
             </div>
             <DropdownMenu showVariable={showOptions}>
                 <div className="flex p-2 bg-tertiary-color w-full justify-center gap-3 items-center border-b border-b-tertiary-color-faded">
-                    <div>
-                        <button onClick={handleDeleteClick} className="pt-1 pb-1 w-20 border border-grey-border-color rounded-full hover:border-accent-color-main">
-                            {
-                                deleteLoading ? <LoadingSpinner /> : 'Delete'
-                            }
-                        </button>
-                    </div>
-                    <div>
-                        <button onClick={handleCloseClick} className="pt-1 pb-1 w-20 border border-grey-border-color rounded-full hover:border-accent-color-main">Close</button>
-                    </div>
-                    <div>
-                        <button onClick={handleEditClick} className="pt-1 pb-1 w-20 border border-grey-border-color rounded-full hover:border-accent-color-main">
-                            {
-                                editRow ? (
-                                    'Cancel'
-                                ) : (
-                                    'Edit'
-                                )
-                            }
-                        </button>
-                    </div>
-                    <div>
+                        <DeleteButton loading={deleteLoading} onClick={handleDeleteClick} />
+                        <CloseButton onClick={handleCloseClick} />
                         {
-                            editRow && (
-                                <button onClick={handleUpdateClick} className="pt-1 pb-1 w-20 border border-grey-border-color rounded-full hover:border-accent-color-main">
-                                    {
-                                        updateLoading ? <LoadingSpinner /> : 'Update'
-                                    }
-                                </button>
+                            editRow ? (
+                                <UpdateButton loading={updateLoading} onClick={handleUpdateClick} />
+                            ) : (
+                                <EditButton onClick={handleEditClick} />
                             )
                         }
-                    </div>
                 </div>
             </DropdownMenu>
         </div>

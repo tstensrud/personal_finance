@@ -17,7 +17,7 @@ function Layout({ children }) {
 
             <div className="flex flex-col flex-1 rounded-lg text-primary-color">
                 <PageHeader activeIndex={activeIndex} setActiveIndex={setActiveIndex} />
-                <div className="flex flex-col w-full h-full flex-wrap pr-5 pl-5">
+                <div className="flex flex-col w-full h-full flex-wrap p-5">
                     <Outlet>
                         {children}
                     </Outlet>

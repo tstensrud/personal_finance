@@ -117,7 +117,7 @@ function Login() {
                         <div className="flex flex-col h-full items-center justify-center">
                             <div className="flex">
                                 <input className="border border-grey-border-color text-primary-color bg-secondary-color rounded-lg w-full pt-2 pb-2 pl-5 pr-5 focus:border-accent-color-main focus:outline-none hover:border-accent-color-main" type="text" value={email} onChange={(e) => setEmail(e.target.value)} placeholder="E-mail" />
-                                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" strokeLinecap="round" strokeLinejoin="round" className="stroke-grey stroke-2 fill-none relative right-8 top-3">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" strokeLinecap="round" strokeLinejoin="round" className="stroke-light-grey stroke-2 fill-none relative right-8 top-3">
                                     <circle cx="12" cy="12" r="4"></circle>
                                     <path d="M16 12v1a3 3 0 0 0 6 0v-1a10 10 0 1 0-3.92 7.94"></path>
                                 </svg>
@@ -127,12 +127,12 @@ function Login() {
                                 <input className="border border-grey-border-color text-primary-color bg-secondary-color rounded-lg w-full pt-2 pb-2 pl-5 pr-5 focus:border-accent-color-main focus:outline-none hover:border-accent-color-main" type={passwordInputType} value={password} onChange={(e) => setPassword(e.target.value)} placeholder="Password" />
                                 {
                                     passwordInputType === "password" ? (
-                                        <svg onClick={handlePasswordVisibleClick} xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="stroke-grey fill-none relative right-8 top-3 cursor-pointer hover:stroke-primary-color">
+                                        <svg onClick={handlePasswordVisibleClick} xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="stroke-light-grey fill-none relative right-8 top-3 cursor-pointer hover:stroke-primary-color">
                                             <path d="M17.94 17.94A10.07 10.07 0 0 1 12 20c-7 0-11-8-11-8a18.45 18.45 0 0 1 5.06-5.94M9.9 4.24A9.12 9.12 0 0 1 12 4c7 0 11 8 11 8a18.5 18.5 0 0 1-2.16 3.19m-6.72-1.07a3 3 0 1 1-4.24-4.24"></path>
                                             <line x1="1" y1="1" x2="23" y2="23"></line>
                                         </svg>
                                     ) : (
-                                        <svg onClick={handlePasswordVisibleClick} xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="stroke-grey fill-none relative right-8 top-3 cursor-pointer hover:stroke-primary-color">
+                                        <svg onClick={handlePasswordVisibleClick} xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="stroke-light-grey fill-none relative right-8 top-3 cursor-pointer hover:stroke-primary-color">
                                             <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
                                             <circle cx="12" cy="12" r="3"></circle>
                                         </svg>
@@ -141,7 +141,7 @@ function Login() {
                             </div>
                             <div className="flex flex-col mt-3 justify-center">
                                 <div className="mb-5">
-                                    <button onClick={firebaseLogin} className="border border-grey-border-color hover:border-accent-color-main focus:border-accent-color-main rounded-lg pt-2 pb-2 pl-5 pr-5 focus:outline-none" type="submit">
+                                    <button onClick={firebaseLogin} className="border border-grey-border-color hover:border-accent-color-main focus:border-accent-color-main rounded-lg pt-2 pb-2 pl-5 pr-5 focus:outline-none  hover:bg-accent-color-main-faded" type="submit">
                                         Log inn
                                     </button>
                                 </div>

@@ -13,6 +13,35 @@ def get_user(uuid: str) -> models.users:
     return None
 
 ##########################
+# SECURITIES             #
+##########################
+def add_security(uuid: str, ticker: str, quantity: int) -> bool:
+    uid = str(uuid4())
+    new_security = models.securities(
+        uid=uid,
+        user_uid=uuid,
+        quantity=quantity,
+        ticker=ticker
+    )
+    try:
+        db.session.add(new_security)
+        db.session.commit()
+        return True
+    except Exception as e:
+        log(f"Could not add security: {e}")
+        db.session.rollback()
+        return False
+
+def get_user_securities(uuid: str) -> list[models.securities]:
+    securities = db.session.query(models.securities).filter(models.securities.user_uid == uuid).all()
+    if securities:
+        securities_data = {}
+        for security in securities:
+            securities_data[security.uid] = security.to_json()
+        return securities_data
+    return None
+
+##########################
 # SPENDING PLAN / BUDGET #
 ##########################
 def get_expense_categories() -> list[models.spending_plan_expense_categories]:

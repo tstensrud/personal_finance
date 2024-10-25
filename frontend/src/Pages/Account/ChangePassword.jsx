@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { reauthenticateWithCredential, updatePassword, EmailAuthProvider } from 'firebase/auth';
 
-import Button from '../../ui/formcomponents/Button.jsx';
+import LargeButton from '../../ui/formcomponents/LargeButton.jsx';
 import Input from '../../ui/formcomponents/Input.jsx';
 
 import ThumbsUpIcon from '../../assets/ThumbsUpIcon.jsx';
@@ -88,7 +88,7 @@ function ChangePassword() {
                 </div>
             </div>
             <div className="flex flex-1 mt-2">
-                <Button buttonText="Change" type="submit" />
+                <LargeButton buttonText="Change" type="submit" />
             </div>
         </form>
     );

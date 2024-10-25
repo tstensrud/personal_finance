@@ -8,6 +8,7 @@ import SelectMenu from '../../ui/formcomponents/SelectMenu.jsx';
 import ErrorIcon from '../../assets/ErrorIcon.jsx';
 import LoadingSpinner from '../../ui/widgets/LoadingSpinner.jsx';
 import DropdownMenu from '../../ui/widgets/DropdownMenu.jsx';
+import AddButton from '../../ui/formcomponents/AddButton.jsx';
 
 function InputRow({ currentUser, showInputRow, placeholder, expense, refetch }) {
 
@@ -44,8 +45,7 @@ function InputRow({ currentUser, showInputRow, placeholder, expense, refetch }) 
         }
     }, [response])
 
-    const submitExpensePost = async (e) => {
-        e.preventDefault();
+    const submitExpensePost = async () => {
         setEmptySelectError("");
         if (!data.category) {
             setEmptySelectError("Select category");
@@ -74,7 +74,7 @@ function InputRow({ currentUser, showInputRow, placeholder, expense, refetch }) 
         <DropdownMenu showVariable={showInputRow}>
             <div className={`flex w-full items-center text-sm justify-start pl-2 border-b border-t border-grey-border-color pt-2 pb-2`}>
                 <div className="flex flex-col w-1/2">
-                    <form onSubmit={submitExpensePost} className="w-full">
+                    <form className="w-full">
 
                         <div className="flex items-center h-10 w-full">
                             <SelectMenu resetFlag={submittedFlag} onClick={handleSelectChange} menuTitle="Choose category" options={categories?.data} />
@@ -88,11 +88,7 @@ function InputRow({ currentUser, showInputRow, placeholder, expense, refetch }) 
                             <input ref={amountRef} onChange={handleChange} id="amount" name="amount" type="text" className="top-0 border rounded-lg border-grey-border-color pl-2 w-full h-8 bg-secondary-color hover:border-accent-color-main focus:border-accent-color-main outline-none" placeholder="Amount" required />
                         </div>
                         <div className="flex items-center h-10 w-full">
-                            <button type="submit" className="pl-3 pr-3 w-24 rounded-full border border-grey-border-color  hover:border-accent-color-main focus:border-accent-color-main h-8 bg-secondary-color outline-none">
-                                {
-                                    loading ? <LoadingSpinner /> : 'Add'
-                                }
-                            </button>
+                            <AddButton loading={loading} onClick={submitExpensePost} />
                         </div>
                     </form>
                 </div>
