@@ -3,11 +3,14 @@ import React, { createContext, useEffect, useState } from 'react';
 const GlobalContext = createContext();
 
 const GlobalProvider = ({ children }) => {
-    const [currency, setCurrency] = useState("NOK");
+    const [currency, setCurrency] = useState("");
+    const [globalLoading, setGlobalLoading] = useState(false);
 
     const value = {
         currency,
-        setCurrency
+        setCurrency,
+        globalLoading,
+        setGlobalLoading
     }
 
     return (

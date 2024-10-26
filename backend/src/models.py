@@ -12,6 +12,7 @@ class users(db.Model):
     created_at = db.Column(DateTime(timezone=True), server_default=func.now())
     updated_at = db.Column(DateTime(timezone=True), onupdate=func.now())
     deactivated = db.Column(db.Boolean, default=False)
+    currency = db.Column(db.String(255), default="usd", nullable=False)
 
     def to_json(self):
         return {
@@ -23,7 +24,8 @@ class users(db.Model):
             "is_admin": self.is_admin,
             "created_at": self.created_at,
             "updated_at": self.updated_at,
-            "deactivated": self.deactivated
+            "deactivated": self.deactivated,
+            "currency": self.currency
         }
 
 class asset_types(db.Model):

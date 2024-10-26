@@ -13,7 +13,7 @@ import LoadingBar from "../../ui/widgets/LoadingBar.jsx";
 
 function Spending() {
     const { currentUser } = useContext(AuthContext);
-    const { currency } = useContext(GlobalContext);
+    const { currency, setGlobalLoading } = useContext(GlobalContext);
     const { data, loading, error, refetch } = useFetch(`/api/spending_plan/${currentUser.uid}/`);
     //const { data: expenseCategories, loading: categoriesLoading, error: categoriesError } = useFetch(`/api/spending_categories/expenses/`);
 
@@ -30,6 +30,10 @@ function Spending() {
         sumUpTotalFoodSpenditure();
         sumUpTotalDebtSpenditure();
     },[data])
+
+    useEffect(() => {
+        setGlobalLoading(loading);
+    },[loading])
 
     const sumUpTotalDebtSpenditure = () => {
         let totalDebts = 0;
@@ -63,7 +67,7 @@ function Spending() {
 
 
     return (
-        <div className="flex justify-start gap-5 flex-wrap">
+        <div className="flex justify-start gap-5 flex-wrap">           
             <div className="flex flex-col w-full sm:w-[28rem]">
                 <div className="flex items-center h-16 text-lg -tracking-wide">
                     Income
@@ -90,7 +94,7 @@ function Spending() {
                         </div>
 
                         <div className="w-full flex flex-col text-sm">
-                            <SummaryRow text="After Spending" value={totalIncome - totalExpense} tail={currency} />
+                            <SummaryRow text="After Spending" value={totalIncome - totalExpense} tail={currency.toUpperCase()} />
 
                         </div>
                         <div className="p-2 flex w-full border-b border-grey-border-color h-10 items-center text-light-grey">

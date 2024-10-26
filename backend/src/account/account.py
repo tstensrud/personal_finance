@@ -23,7 +23,12 @@ def firebase_auth_required(f):
         return f(*args, **kwargs)
     return decorated_function
 
-@account_bp.route('/<uuid>/', methods=['GET'])
+@account_bp.route('/get/<uuid>/', methods=['GET'])
 @firebase_auth_required
 def get_account(uuid: str):
-    pass
+    user = dbo.get_user(uuid=uuid)
+    if user:
+        user_data = {}
+        user_data['user_data'] = user.to_json()
+        return jsonify({"success": True, "data": user_data})
+    return jsonify({"success": False, "message": "User not found"})

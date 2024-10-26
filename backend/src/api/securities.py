@@ -7,15 +7,20 @@ def get_security_data(ticker: str):
         return data
     return None
 
-def get_stock_data(ticker_symbol: str):
+def ticker_exists(ticker: str) -> bool:
+    stock = yf.Ticker(ticker=ticker)
+    data = stock.history(period="1d")
+    return not data.empty
+
+def get_security_historic_data(ticker_symbol: str, timeframe: str):
     security = yf.Ticker(ticker_symbol)
     
     try:
-        data = security.history(period="1d")
+        data = security.history(period=timeframe)
         if data.empty:
-            print(f"No data found for ticker symbol: {ticker_symbol}")
+            return None
         else:
-            print(data)
+            return data['Close']
 
     except HTTPError as http_err:
         print(f"HTTP error occurred for {ticker_symbol}: {http_err}")

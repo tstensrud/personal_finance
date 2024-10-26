@@ -62,7 +62,7 @@ function ExpensesTable({ currentUser, setTotalExpense, expensesData, refetch }) 
                 <div className={`flex items-center h-full pr-2 flex-1 justify-end`}>
 
                     {
-                        <>{totalExpenseValue.toLocaleString()} {currency}</>
+                        <>{totalExpenseValue.toLocaleString()} {currency.toUpperCase()}</>
                     }
 
                 </div>

@@ -15,6 +15,12 @@ def get_user(uuid: str) -> models.users:
 ##########################
 # SECURITIES             #
 ##########################
+def get_security(uid: str) -> models.securities:
+    security = db.session.query(models.securities).filter(models.securities.uid == uid).first()
+    if security:
+        return security
+    return False
+
 def add_security(uuid: str, ticker: str, quantity: int) -> bool:
     uid = str(uuid4())
     new_security = models.securities(
@@ -35,12 +41,32 @@ def add_security(uuid: str, ticker: str, quantity: int) -> bool:
 def get_user_securities(uuid: str) -> list[models.securities]:
     securities = db.session.query(models.securities).filter(models.securities.user_uid == uuid).all()
     if securities:
-        securities_data = {}
-        for security in securities:
-            securities_data[security.uid] = security.to_json()
-        return securities_data
+        return securities
     return None
 
+def delete_security(security_uid: str) -> bool:
+    security = get_security(uid = security_uid)
+    if security:
+        try:
+            db.session.delete(security)
+            db.session.commit()
+            return True
+        except Exception as e:
+            log(f"Could not find security {e}")
+            return False
+
+def update_security(uid: str, new_quantity: int) -> bool:
+    security = get_security(uid=uid)
+    if security:
+        security.quantity = new_quantity
+        try:
+            db.session.commit()
+            return True
+        except Exception as e:
+            db.session.rollback()
+            log(f"Could not update quantity: {e}")
+            return False
+        
 ##########################
 # SPENDING PLAN / BUDGET #
 ##########################

@@ -116,7 +116,7 @@ function TableRow({ expense, percentage, borderTop, editable, data, refetch }) {
                                 }
                                 <div className="pl-2">
                                     {
-                                        percentage ? '%' : currency
+                                        percentage ? '%' : currency.toUpperCase()
                                     }
                                 </div>
                             </>

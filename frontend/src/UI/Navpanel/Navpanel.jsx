@@ -11,6 +11,8 @@ import AssetsIcon from '../../assets/menusvgs/AssetsIcon';
 import DebtsIcon from '../../assets/menusvgs/DebtsIcon';
 import SpendingIcon from '../../assets/menusvgs/SpendingIcon';
 import CollapseMenuItem from './CollapseMenuItem';
+import SettingsIcon from '../../assets/menusvgs/SettingsIcon.jsx';
+import LogoutIcon from '../../assets/menusvgs/LogutIcon.jsx';
 
 function NavPanel({ showMenu, setShowMenu, setActiveIndex, activeIndex }) {
 
@@ -20,6 +22,7 @@ function NavPanel({ showMenu, setShowMenu, setActiveIndex, activeIndex }) {
         { text: "Other assets", url: "assets", svg: <AssetsIcon activeIndex={activeIndex} /> },
         { text: "Debts", url: "debts", svg: <DebtsIcon activeIndex={activeIndex} /> },
         { text: "Spending plan", url: "spending", svg: <SpendingIcon activeIndex={activeIndex} /> },
+        { text: "Account", url: "account", svg: <SettingsIcon activeIndex={activeIndex} />},
     ];
 
     return (
@@ -34,12 +37,15 @@ function NavPanel({ showMenu, setShowMenu, setActiveIndex, activeIndex }) {
                 </div>
             </div>
 
-            <div className={`flex flex-col items-center pl-2 pr-2 `}>
+            <div className={`flex flex-col items-center pl-2 pr-2 pb-5`}>
                 {
                     menuItems.map((item, index) => (
                         <NavItem  showMenu={showMenu} key={index} index={index} text={item.text} url={item.url} setActiveIndex={setActiveIndex} activeIndex={activeIndex} svg={item.svg && React.cloneElement(item.svg, { index })} />
                     ))
                 }
+            </div>
+            <div className="flex pt-5 pl-2 pr-2 border-t border-grey-border-color">
+                <NavItem  showMenu={showMenu} text={"Log out"} url={"logout"} setActiveIndex={null} activeIndex={-1} svg={<LogoutIcon />} />
             </div>
 
         </div>

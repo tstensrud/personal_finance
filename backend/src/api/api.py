@@ -2,7 +2,7 @@ from firebase_admin import auth
 from flask import Blueprint, jsonify, request
 from functools import wraps
 from . import db_ops_api as dbo
-from . import securities
+from .securities import get_security_data, get_security_historic_data, ticker_exists
 from .globals import is_int
 
 api_bp = Blueprint("api", __name__)
@@ -27,6 +27,39 @@ def firebase_auth_required(f):
 ##########################
 # SECURITIES             #
 ##########################
+@api_bp.route('/securities/get/<uuid>/', methods=['GET'])
+@firebase_auth_required
+def get_securities(uuid: str):
+    securities = dbo.get_user_securities(uuid=uuid)
+    if securities:
+        securities_data = {}
+        total_value = 0
+        for security in securities:
+            security_data = get_security_data(security.ticker)
+            
+            security_historic_one_day = get_security_historic_data(
+                ticker_symbol=security.ticker,
+                timeframe="1d"
+            )
+
+            closing_value = float(security_historic_one_day.iloc[0])
+            
+            total_value = total_value + (closing_value * security.quantity)
+
+            securities_data[security.uid] = {
+                "server_data": security.to_json(),
+                "security_data" : security_data.info,
+                "closing_value": closing_value,
+            }
+
+        totals = {
+            "total_companies_owned": len(securities),
+            "total_value": total_value
+        }
+
+        return jsonify({"success": True, "data": securities_data, "totals": totals})
+    return jsonify({"success": False, "message": "No securities found"})
+    
 @api_bp.route('/securities/add/<uuid>/', methods=['POST'])
 @firebase_auth_required
 def add_security(uuid: str):
@@ -34,21 +67,54 @@ def add_security(uuid: str):
     if user:
         data = request.get_json()
         if data:
-            is_quantaty_int = is_int(data['quantity'].strip())
-            if not is_quantaty_int:
-                return jsonify({"success": False, "message": "Quantity must only be whole numbers"})
+            quantity = data["quantity"].strip()
+            ticker = data["ticker"].strip()
+            
+            find_ticker = ticker_exists(ticker)
+            if not find_ticker:
+                return jsonify({"success": False, "message": f"Could not find ticker {ticker}"})
+            
+            if not is_int(quantity):
+                return jsonify({"success": False, "message": "Quantity can only contain whole numbers"})
             
             new_security = dbo.add_security(
                 uuid=uuid,
-                ticker=data["ticker"].strip(),
-                quantity=data["quantity"].strip()
+                ticker=ticker,
+                quantity=quantity
             )
+
             if new_security:
                 return jsonify({"success": True})
             return jsonify({"success": False, "message": "Could not add security"})
         return jsonify({"success": False, "message": "No data received"})
     return jsonify({"success": False, "message": "User not found"})
 
+@api_bp.route('/securities/delete/', methods=['DELETE'])
+@firebase_auth_required
+def delete_security():
+    data = request.get_json()
+    if data:
+        security_uid = data['uid']
+        deleted_security = dbo.delete_security(security_uid=security_uid)
+        if deleted_security:
+            return jsonify({"success": True, "message": "Deleted"})
+        return jsonify({"success": False, "message": "Could not delete security"})
+    return jsonify({"success": False, "message": "No data received"})
+
+@api_bp.route('/securities/update/<security_uid>/', methods=['PATCH'])
+def update_security(security_uid: str):
+    data = request.get_json()
+    if data:
+        uid = security_uid
+        quantity = data['quantity'].strip()
+        if not is_int(quantity):
+            return jsonify({"success": False, "message": "Quantity can only contain whole numbers"})
+        updated_security = dbo.update_security(uid=uid, new_quantity=quantity)
+        if updated_security:
+            return jsonify({"success": True})
+        return jsonify({"success": False, "message": "Could not update security"})
+    return jsonify({"success": False, "message": "No data received"})
+    
 ##########################
 # SPENDING PLAN / BUDGET #
 ##########################

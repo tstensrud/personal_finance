@@ -2,38 +2,30 @@ import { useEffect, useRef, useState } from 'react';
 
 import useSubmitData from '../../hooks/useSubmitData.jsx';
 
-
+import ErrorIcon from '../../assets/ErrorIcon.jsx'
 import Card from '../../ui/Card.jsx';
 import Input from '../../ui/formcomponents/Input.jsx';
 import LargeAddButton from '../../ui/formcomponents/LargeAddButton.jsx';
 
-function AddSecurity({ currentUser }) {
+function AddSecurity({ currentUser, refetch }) {
 
-    const {data, setData, loading, error, response, handleSubmit} = useSubmitData(`/api/securities/add/${currentUser.uid}/`);
+    const { data, setData, loading, error, response, handleSubmit } = useSubmitData(`/api/securities/add/${currentUser.uid}/`);
 
     const tickerRef = useRef(null);
-    const nameRef = useRef(null);
     const quantityRef = useRef(null);
 
     useEffect(() => {
         if (response?.success) {
             tickerRef.current.value = '';
-            nameRef.current.value = '';
             quantityRef.current.value = '';
+            refetch();
         }
-    },[response]);
+    }, [response]);
 
     const handleTickerChange = (e) => {
         setData((prev) => ({
             ...prev,
             ticker: e.target.value,
-        }))
-    }
-
-    const handleNameChange = (e) => {
-        setData((prev) => ({
-            ...prev,
-            name: e.target.value,
         }))
     }
 
@@ -49,7 +41,7 @@ function AddSecurity({ currentUser }) {
             await handleSubmit();
         }
     }
-    
+
     return (
         <Card>
             <form>
@@ -61,13 +53,26 @@ function AddSecurity({ currentUser }) {
                         <Input ref={tickerRef} onChange={handleTickerChange} type="text" name="ticker" placeholder={"Ticker"} />
                     </div>
                     <div className="h-10">
-                        <Input ref={nameRef} onChange={handleNameChange} type="text" name="name" placeholder={"Security name"} />
-                    </div>
-                    <div className="h-10">
                         <Input ref={quantityRef} onChange={handleQuantityChange} type="text" name="quantity" placeholder={"Quantity"} />
                     </div>
-                    <div>
-                        <LargeAddButton loading={loading} onClick={handleSubmitSecurity} buttonText="Add" type="submit" />
+                    <div className="flex h-10">
+                        <div>
+                            <LargeAddButton loading={loading} onClick={handleSubmitSecurity} buttonText="Add" type="submit" />
+                        </div>
+                        <div className="flex flex-1 h-full items-center pl-5">
+                            {
+                                response?.success === false && (
+                                    <div className="flex w-full">
+                                        <div className="pr-2">
+                                            <ErrorIcon dimensions={20} />
+                                        </div>
+                                        <div className="h-full items-center text-sm">
+                                            {response.message}
+                                        </div>
+                                    </div>
+                                )
+                            }
+                        </div>
                     </div>
                 </div>
             </form>
