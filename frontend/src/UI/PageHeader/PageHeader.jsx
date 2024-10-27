@@ -15,7 +15,7 @@ function PageHeader({ activeIndex, setActiveIndex }) {
 
             <div className="flex w-full h-full items-start pl-5">
 
-                <div className="text-2xl font-semibold -tracking-wide">
+                <div className="text-2xl h-full items-center flex font-semibold -tracking-wide">
                     Your personal finances
                 </div>
 

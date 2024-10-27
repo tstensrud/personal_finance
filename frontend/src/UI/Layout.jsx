@@ -15,7 +15,7 @@ function Layout({ children }) {
 
     return (
         <div className="flex flex-row w-full h-full bg-secondary-color">
-            <div className="absolute top-0 left-0 w-full h-10">
+            <div className="absolute top-0 left-0 w-full h-5">
                 {
                     globalLoading && <LoadingBar />
                 }

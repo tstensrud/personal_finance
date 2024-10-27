@@ -7,9 +7,7 @@ import { GlobalContext } from '../../context/GlobalContext.jsx';
 import Card from "../../ui/Card";
 import ExpensesTable from "./ExpensesTable";
 import IncomeTable from "./IncomeTable";
-import TableRow from "./TableRow";
 import SummaryRow from './SummaryRow.jsx'
-import LoadingBar from "../../ui/widgets/LoadingBar.jsx";
 
 function Spending() {
     const { currentUser } = useContext(AuthContext);
@@ -63,8 +61,6 @@ function Spending() {
         })
         setTotalLiving(livingSpenditure);
     }
-
-
 
     return (
         <div className="flex justify-start gap-5 flex-wrap">           
