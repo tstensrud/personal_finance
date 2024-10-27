@@ -10,6 +10,7 @@ import CreditCardIcon from '../../assets/CreditCardIcon.jsx';
 import GlobIcon from '../../assets/GlobeIcon.jsx';
 import MaximizeIcon from "../../assets/MaximizeIcon.jsx";
 import MinimizeIcon from "../../assets/MinimizeIcon.jsx";
+import DebtTable from "./DebtTable.jsx";
 
 function DebtContainer({ debtType, title }) {
     const [maximized, setMaximized] = useState(false);
@@ -54,7 +55,7 @@ function DebtContainer({ debtType, title }) {
                                 })
                             }
                         </div>
-                        <div className="flex pl-3 items-center h-full">
+                        <div className={`flex pl-3 items-center h-full`}>
                             {title}
                         </div>
                         <div className="flex flex-1 h-full justify-end">
@@ -65,17 +66,11 @@ function DebtContainer({ debtType, title }) {
                             </div>
                         </div>
                     </div>
-                    <SummaryRow rowTitle={"Total owed"} rowValue={1234} />
-                    <SummaryRow rowTitle={"Lender"} rowValue={"DnB"} />
-                    <SummaryRow rowTitle={"Expected payed by"} rowValue={"2050"} />
-                    {
-
-                    }
+                    <SummaryRow maximized={maximized} rowTitle={"Total owed"} rowValue={1234} />
+                    <SummaryRow maximized={maximized} rowTitle={"Lender"} rowValue={"DnB"} />
+                    <SummaryRow maximized={maximized} rowTitle={"Expected payed by"} rowValue={"2050"} />
                     <DropdownMenu showVariable={showDropdown} >
-                        <div className="w-full h-[500px] text-sm pt-5">
-
-                        asdff
-                        </div>
+                        <DebtTable />
                     </DropdownMenu>
                 </div>
             </Card>

@@ -1,8 +1,10 @@
+import AddNewDebt from "./AddNewDebt";
 import DebtContainer from "./DebtContainer";
 
 function Debts() {
     return (
         <div className="flex flex-col w-full">
+            <AddNewDebt />
             <div className="flex flex-col flex-wrap gap-5">
                 <DebtContainer debtType="home" title="Home" />
                 <DebtContainer debtType="creditcard" title="Credit card" />
