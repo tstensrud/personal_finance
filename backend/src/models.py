@@ -131,6 +131,15 @@ class debt_entry(db.Model):
     value = db.Column(db.Integer, nullable=False)
     created_at = db.Column(DateTime(timezone=True), server_default=func.now())
 
+    def to_json(self):
+        return {
+            "id": self.id,
+            "uid": self.uid,
+            "debt_uid": self.debt_uid,
+            "value": self.value,
+            "created_at": self.created_at
+        }
+
 class spending_plan_income(db.Model):
     __tablename__ = "spending_plan_income"
     id = db.Column(db.Integer, primary_key=True, autoincrement=True)
