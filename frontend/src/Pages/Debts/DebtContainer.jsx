@@ -8,19 +8,21 @@ import HouseIcon from '../../assets/HouseIcon.jsx';
 import VehicleIcon from '../../assets/VehicleIcon.jsx';
 import CreditCardIcon from '../../assets/CreditCardIcon.jsx';
 import GlobIcon from '../../assets/GlobeIcon.jsx';
+import PersonIcon from '../../assets/PersonIcon.jsx';
 import MaximizeIcon from "../../assets/MaximizeIcon.jsx";
 import MinimizeIcon from "../../assets/MinimizeIcon.jsx";
 import DebtTable from "./DebtTable.jsx";
 
-function DebtContainer({ debtType, title }) {
+function DebtContainer({ debtData, debtType }) {
     const [maximized, setMaximized] = useState(false);
     const [showDropdown, setShowDropdown] = useState(false);
     
     const debtTypes = [
-        {type: "home", icon: <HouseIcon />},
-        {type: "vehicle", icon: <VehicleIcon />},
-        {type: "creditcard", icon: <CreditCardIcon />},
-        {type: "other", icon: <GlobIcon />}
+        {type: "home", cardText: "Home", icon: <HouseIcon />},
+        {type: "vehicle", cardText: "Vehicle", icon: <VehicleIcon />},
+        {type: "creditcard", cardText: "Credit Card", icon: <CreditCardIcon />},
+        {type: "private", cardText: "Private", icon: <PersonIcon /> },
+        {type: "other", cardText: "Other", icon: <GlobIcon />}
     ];
 
     const handleMaximize = () => {
@@ -40,7 +42,7 @@ function DebtContainer({ debtType, title }) {
     }
 
     return (
-        <div onTransitionEnd={handleMaximizedAnimationEnd} className={`${maximized ? 'w-full' : 'w-96'} duration-200`}>
+        <div onTransitionEnd={handleMaximizedAnimationEnd} className={`${maximized ? 'w-full' : 'w-96'} duration-200 overflow-hidden`}>
             <Card>
                 <div className="p-2 flex flex-col">
                     <div className="w-full text-lg flex h-10">
@@ -56,7 +58,15 @@ function DebtContainer({ debtType, title }) {
                             }
                         </div>
                         <div className={`flex pl-3 items-center h-full`}>
-                            {title}
+                        {
+                                debtTypes.map(item => {
+                                    if (item.type === debtType) {
+                                        return item.cardText
+                                    } else {
+                                        return null;
+                                    }
+                                })
+                            }
                         </div>
                         <div className="flex flex-1 h-full justify-end">
                             <div onClick={handleMaximize}>
@@ -66,9 +76,10 @@ function DebtContainer({ debtType, title }) {
                             </div>
                         </div>
                     </div>
-                    <SummaryRow maximized={maximized} rowTitle={"Total owed"} rowValue={1234} />
-                    <SummaryRow maximized={maximized} rowTitle={"Lender"} rowValue={"DnB"} />
-                    <SummaryRow maximized={maximized} rowTitle={"Expected payed by"} rowValue={"2050"} />
+                    <SummaryRow maximized={maximized} rowTitle={"Lender"} rowValue={debtData.debt_name} />
+                    <SummaryRow maximized={maximized} rowTitle={"Initial loan"} rowValue={debtData.value.toLocaleString()} />
+                    <SummaryRow maximized={maximized} rowTitle={"Added"} rowValue={debtData.created_at} />
+                    <SummaryRow maximized={maximized} rowTitle={"Expected payed by"} rowValue={debtData.end_date} />
                     <DropdownMenu showVariable={showDropdown} >
                         <DebtTable />
                     </DropdownMenu>

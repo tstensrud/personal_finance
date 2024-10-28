@@ -114,7 +114,53 @@ def update_security(security_uid: str):
             return jsonify({"success": True})
         return jsonify({"success": False, "message": "Could not update security"})
     return jsonify({"success": False, "message": "No data received"})
-    
+
+##########################
+# DEBTS                  #
+##########################
+@api_bp.route('/debts/debt_types/', methods=['GET'])
+def get_debt_types():
+    debt_types = dbo.get_debt_types()
+    debt_type_data = {}
+    for debt_type in debt_types:
+        debt_type_data[debt_type.type] = debt_type.to_json()
+    return jsonify({"success": True, "data": debt_type_data})
+
+@api_bp.route('/debts/get/<uuid>/', methods=['GET'])
+def get_debts(uuid: str):
+    debts = dbo.get_user_debts(uuid=uuid)
+    if debts:
+        debt_data = {}
+        for debt_item, type_item in debts:
+            current_debt_data = {}
+            current_debt_data['debt_data'] = debt_item.to_json()
+            current_debt_data['category_data'] = type_item.to_json()
+            debt_data[debt_item.uid] = current_debt_data
+        return jsonify({"success": True, "data": debt_data})
+    return jsonify({"success": False, "message": "No debts registered"})
+
+@api_bp.route('/debts/new/<uuid>/', methods=["POST"])
+def new_debt(uuid: str):
+    data = request.get_json()
+    if data:
+        if not is_int(data['value'].strip()):
+            return jsonify({"success": False, "message": "Value can only be whole numbers"})
+        name = data['name'].strip()
+        value = data['value'].strip()
+        end_date = data['end_date'].strip()
+        debt_type = data['debt_type']
+        new_user_debt = dbo.new_debt(
+            uuid=uuid,
+            type=debt_type,
+            name=name,
+            value=value,
+            end_date=end_date
+        )
+        if new_user_debt:
+            return jsonify({"success": True})
+        return jsonify({"success": False, "message": "Could not add debt"})
+    return jsonify({"success": False, "message": "No data received"})
+
 ##########################
 # SPENDING PLAN / BUDGET #
 ##########################

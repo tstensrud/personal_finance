@@ -66,7 +66,44 @@ def update_security(uid: str, new_quantity: int) -> bool:
             db.session.rollback()
             log(f"Could not update quantity: {e}")
             return False
-        
+
+##########################
+# DEBTS                  #
+##########################
+def get_debt_types() -> models.debt_types:
+    debt_types = db.session.query(models.debt_types).all()
+    return debt_types
+
+def new_debt(uuid: str, type: str, name: str, value: int, end_date: int) -> bool:
+    new_uid = str(uuid4())
+    new_debt = models.debts(
+        uid=new_uid,
+        user_uid=uuid,
+        debt_type=type,
+        debt_name=name,
+        value=value,
+        end_date=end_date
+    )
+    try:
+        db.session.add(new_debt)
+        db.session.commit()
+        return True
+    except Exception as e:
+        log(f"Could not add debt: {e}")
+        db.session.rollback()
+        return False
+    
+def get_user_debts(uuid: str) -> tuple[models.debts, models.debt_types]:
+    user = get_user(uuid=uuid)
+    if user:
+        debts = db.session.query(models.debts, models.debt_types).join(
+            models.debts, models.debts.debt_type == models.debt_types.uid).filter(
+            models.debts.user_uid == uuid).all()
+        if debts:
+            return debts
+        return None
+    return None
+
 ##########################
 # SPENDING PLAN / BUDGET #
 ##########################

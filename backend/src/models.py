@@ -95,7 +95,7 @@ class debt_types(db.Model):
         return {
             "id": self.id,
             "uid": self.uid,
-            "type": self.type
+            "category_name": self.type
         }
     
 class debts(db.Model):
@@ -106,6 +106,7 @@ class debts(db.Model):
     debt_type = db.Column(db.String(255), db.ForeignKey('debt_types.uid'), nullable=False)
     debt_name = db.Column(db.String(255), nullable=False)
     value = db.Column(db.Integer, nullable=False)
+    end_date = db.Column(db.Integer, nullable=False)
     created_at = db.Column(DateTime(timezone=True), server_default=func.now())
     updated_at = db.Column(DateTime(timezone=True), onupdate=func.now())
 
@@ -117,9 +118,18 @@ class debts(db.Model):
             "debt_type": self.debt_type,
             "debt_name": self.debt_name,
             "value": self.value,
+            "end_date": self.end_date,
             "created_at": self.created_at,
             "updated_at": self.updated_at
         }
+
+class debt_entry(db.Model):
+    __tablename__ = "debt_entry"
+    id = db.Column(db.Integer, primary_key=True, autoincrement=True)
+    uid = db.Column(db.String(255), unique=True, nullable=False)
+    debt_uid = db.Column(db.String(255), db.ForeignKey('debts.uid'), nullable=False)
+    value = db.Column(db.Integer, nullable=False)
+    created_at = db.Column(DateTime(timezone=True), server_default=func.now())
 
 class spending_plan_income(db.Model):
     __tablename__ = "spending_plan_income"

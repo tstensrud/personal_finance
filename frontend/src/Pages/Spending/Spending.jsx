@@ -65,13 +65,13 @@ function Spending() {
     return (
         <div className="flex justify-start gap-5 flex-wrap">           
             <div className="flex flex-col w-full sm:w-[28rem]">
-                <div className="flex items-center h-16 text-lg -tracking-wide">
+                <div className="flex items-center text-lg -tracking-wide pl-1 mb-2">
                     Income
                 </div>
                 <div className="w-full">
                     <IncomeTable currentUser={currentUser} incomeData={data?.data?.income} setTotalIncome={setTotalIncome} refetch={refetch} />
                 </div>
-                <div className="flex items-center h-16 text-lg -tracking-wide">
+                <div className="flex items-center text-lg -tracking-wide pl-1 mt-5 mb-2">
                     Expenses
                 </div>
                 <div className="w-full">
@@ -80,7 +80,7 @@ function Spending() {
             </div>
 
             <div className="flex flex-col w-full sm:w-[28rem]">
-                <div className="flex items-center h-16 text-lg -tracking-wide">
+                <div className="flex items-center text-lg -tracking-wide pl-1 mb-2">
                     Monthly status
                 </div>
                 <div className="w-full">
