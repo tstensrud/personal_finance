@@ -78,6 +78,7 @@ function DebtContainer({ debtData, debtType }) {
                     </div>
                     <SummaryRow maximized={maximized} rowTitle={"Lender"} rowValue={debtData.debt_name} />
                     <SummaryRow maximized={maximized} rowTitle={"Initial loan"} rowValue={debtData.value.toLocaleString()} />
+                    <SummaryRow maximized={maximized} rowTitle={"Current loan"} rowValue={0} />
                     <SummaryRow maximized={maximized} rowTitle={"Added"} rowValue={debtData.created_at} />
                     <SummaryRow maximized={maximized} rowTitle={"Expected payed by"} rowValue={debtData.end_date} />
                     <DropdownMenu showVariable={showDropdown} >
