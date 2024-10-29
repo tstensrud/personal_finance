@@ -104,6 +104,28 @@ def get_user_debts(uuid: str) -> tuple[models.debts, models.debt_types]:
         return None
     return None
 
+def new_debt_entry(new_value: int, debt_uid: str) -> bool:
+    uid = str(uuid4())
+    new_entry = models.debt_entry(
+        uid=uid,
+        debt_uid=debt_uid,
+        value=new_value
+    )
+    try:
+        db.session.add(new_entry)
+        db.session.commit()
+        return True
+    except Exception as e:
+        log(f"Could not add debt entry: {e}")
+        db.session.rollback()
+        return False
+
+def get_debt_entries(debt_uid: str) -> list[models.debt_entry]:
+    entries = db.session.query(models.debt_entry).filter(models.debt_entry.debt_uid == debt_uid).all()
+    if entries:
+        return entries
+    return None
+
 ##########################
 # SPENDING PLAN / BUDGET #
 ##########################

@@ -17,7 +17,7 @@ function AddButton({ onClick, loading }) {
                     </svg>
                 </div>
 
-                <div className="flex flex-1 justify-center pr-2">
+                <div className="flex flex-1 justify-center pr-2 text-sm">
                     {
                         loading ? <LoadingSpinner /> : 'Add'
                     }

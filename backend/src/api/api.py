@@ -119,6 +119,7 @@ def update_security(security_uid: str):
 # DEBTS                  #
 ##########################
 @api_bp.route('/debts/debt_types/', methods=['GET'])
+@firebase_auth_required
 def get_debt_types():
     debt_types = dbo.get_debt_types()
     debt_type_data = {}
@@ -127,6 +128,7 @@ def get_debt_types():
     return jsonify({"success": True, "data": debt_type_data})
 
 @api_bp.route('/debts/get/<uuid>/', methods=['GET'])
+@firebase_auth_required
 def get_debts(uuid: str):
     debts = dbo.get_user_debts(uuid=uuid)
     if debts:
@@ -161,6 +163,31 @@ def new_debt(uuid: str):
         return jsonify({"success": False, "message": "Could not add debt"})
     return jsonify({"success": False, "message": "No data received"})
 
+@api_bp.route('/debts/new_entry/<debt_uid>/', methods=['POST'])
+@firebase_auth_required
+def new_debt_entry(debt_uid: str):
+    data = request.get_json()
+    if data:
+        new_value = data['value'].strip()
+        if not is_int(new_value):
+            return jsonify({"success": False, "message": "Only whole numbers in value"})
+        new_entry = dbo.new_debt_entry(new_value=new_value, debt_uid=debt_uid)
+        if new_entry:
+            return jsonify({"success": True})
+        return jsonify({"success": False, "message": "Could not add debt entry"})
+    return jsonify({"success": False, "message": "No data received"})
+
+@api_bp.route('/debts/debt_entries/<debt_uid>/', methods=['GET'])
+@firebase_auth_required
+def get_debt_entries(debt_uid: str):
+    entries = dbo.get_debt_entries(debt_uid=debt_uid)
+    if entries:
+        entries_data = {}
+        for entry in entries:
+            entries_data[entry.uid] = entry.to_json()
+        return jsonify({"success": True, "data": entries_data})
+    return jsonify({"success": False, "message": "No entries found"})
+    
 ##########################
 # SPENDING PLAN / BUDGET #
 ##########################
