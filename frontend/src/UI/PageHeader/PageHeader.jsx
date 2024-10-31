@@ -11,7 +11,7 @@ function PageHeader({ activeIndex, setActiveIndex }) {
     const { currentUser } = useContext(AuthContext);
 
     return (
-        <div className="flex-col w-full items-center top-0 sticky border-b border-grey-border-color pt-5 pb-5">
+        <div className="hidden sm:flex flex-col w-full items-center top-0 sticky border-b border-grey-border-color pt-5 pb-5">
 
             <div className="flex w-full h-full items-start pl-5">
 

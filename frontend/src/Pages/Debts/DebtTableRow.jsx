@@ -1,6 +1,6 @@
 function DebtTableRow({ date, value }) {
     return (
-        <tr className="border-t border-grey-border-color h-8 hover:bg-accent-color-main-faded">
+        <tr className="border-t border-grey-border-color h-8 hover:bg-table-hover">
             <td className="text-start pl-2">
                 {date}
             </td>

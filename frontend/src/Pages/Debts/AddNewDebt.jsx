@@ -47,19 +47,20 @@ function AddNewDebt({ debtTypes, currentUser, refetch }) {
 
 
     return (
-        <div className="flex flex-col mb-5 p-2 border border-grey-border-color rounded-lg w-96">
-            <div className="flex w-full h-8 items-center pl-1">
+        <div className="flex flex-col mb-5 p-2 border border-grey-border-color rounded-lg sm:w-96 w-full">
+
+            <div onClick={() => setShowDropdown(!showDropdown)}  className="group cursor-pointer flex w-full h-8 items-center pl-1">
                 <div className="flex h-full items-center">
                     Add new debt
                 </div>
                 <div className="flex flex-1 justify-end items-center h-full">
                     {
                         showDropdown ? (
-                            <svg onClick={() => setShowDropdown(!showDropdown)} xmlns="http://www.w3.org/2000/svg" height={20} viewBox="0 -960 960 960" width={20} className="cursor-pointer fill-light-grey hover:fill-primary-color duration-200">
+                            <svg xmlns="http://www.w3.org/2000/svg" height={20} viewBox="0 -960 960 960" width={20} className="cursor-pointer fill-light-grey group-hover:fill-primary-color duration-200">
                                 <path d="m296-80-56-56 240-240 240 240-56 56-184-184L296-80Zm184-504L240-824l56-56 184 184 184-184 56 56-240 240Z" />
                             </svg>
                         ) : (
-                            <svg onClick={() => setShowDropdown(!showDropdown)} xmlns="http://www.w3.org/2000/svg" height={20} viewBox="0 -960 960 960" width={20} className="cursor-pointer fill-light-grey hover:fill-primary-color duration-200">
+                            <svg xmlns="http://www.w3.org/2000/svg" height={20} viewBox="0 -960 960 960" width={20} className="cursor-pointer fill-light-grey group-hover:fill-primary-color duration-200">
                                 <path d="M480-80 240-320l57-57 183 183 183-183 57 57L480-80ZM298-584l-58-56 240-240 240 240-58 56-182-182-182 182Z" />
                             </svg>
                         )

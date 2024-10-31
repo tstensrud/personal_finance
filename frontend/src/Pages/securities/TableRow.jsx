@@ -71,9 +71,9 @@ function TableRow({ data, refetch, currencyConversion }) {
         }
     }
 
-    
+
     return (
-        <div onClick={handleShowOptionsClick} className={`cursor-pointer flex-col justify-center text-sm border-b border-grey-border-color w-full bg-tertiary-color ${!showOptions && 'hover:bg-accent-color-main-faded'} `}>
+        <div onClick={handleShowOptionsClick} className={`cursor-pointer flex-col justify-center text-sm border-b border-grey-border-color w-full bg-tertiary-color ${!showOptions && 'hover:bg-table-hover'} `}>
             <div className="flex">
                 <div className="flex items-center w-[10%] h-10 justify-start pl-5">
                     {data?.server_data?.ticker.toUpperCase()}
@@ -93,10 +93,16 @@ function TableRow({ data, refetch, currencyConversion }) {
                     }
                 </div>
                 <div className="hidden sm:flex sm:w-[20%] items-center h-10 justify-center">
-                    {data?.closing_value && Number((data?.closing_value * currencyConversion).toFixed(2)).toLocaleString()} {currency.toUpperCase()}
+                    <div className="flex w-1/2 justify-end">
+                        {data?.closing_value && Number((data?.closing_value * currencyConversion).toFixed(0)).toLocaleString()}
+                    </div>
+                    <div className="flex w-1/2 justify-start text-light-grey pl-2">
+                        {currency.toUpperCase()}
+
+                    </div>
                 </div>
                 <div className="flex items-center justify-end w-[40%] sm:w-[20%] h-10 pr-5">
-                    {data?.closing_value && data?.server_data && Number((data?.closing_value * data?.server_data?.quantity).toFixed(2)).toLocaleString()} {currency.toUpperCase()}
+                    {data?.closing_value && data?.server_data && Number((data?.closing_value * data?.server_data?.quantity * currencyConversion).toFixed(0)).toLocaleString()} <div className="text-light-grey pl-2">{currency.toUpperCase()}</div>
                 </div>
             </div>
             <DropdownMenu showVariable={showOptions} >

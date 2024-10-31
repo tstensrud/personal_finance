@@ -1,13 +1,27 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 
 function SelectMenu({ menuTitle, options, onClick, resetFlag }) {
 
     const [showDropdown, setShowDropdown] = useState(false);
     const [selectedOption, setSelectedOption] = useState("");
+    const containerRef = useRef(null);
 
     useEffect(() => {
         setSelectedOption("");
     },[resetFlag]);
+    
+    useEffect(() => {
+        const handleClickOutsideContainer = (e) => {
+            if (containerRef.current && !containerRef.current.contains(e.target)) {
+                setShowDropdown(false);
+            }
+        }
+        document.addEventListener('mousedown', handleClickOutsideContainer);
+
+        return () => {
+            document.removeEventListener('mousedown', handleClickOutsideContainer);
+        }
+    },[])
     
     const handleOptionClick = (option) => {
         onClick(option.uid);
@@ -16,7 +30,7 @@ function SelectMenu({ menuTitle, options, onClick, resetFlag }) {
     }
     
     return (
-        <div className="w-full relative text-sm">
+        <div ref={containerRef} className="w-full relative text-sm">
             <div onClick={() => setShowDropdown(!showDropdown)} className="flex border rounded-lg border-grey-border-color pl-2 w-full h-8 bg-secondary-color hover:border-accent-color-main focus:border-accent-color-main outline-none">
                 <div className="h-full items-center flex">
                     {

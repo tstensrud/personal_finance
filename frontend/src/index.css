@@ -26,3 +26,7 @@
     @apply w-full h-full p-0 m-0 bg-tertiary-color
   }
  }
+
+ .test {
+  background-color: #0caf6079;
+ }

@@ -83,7 +83,7 @@ function DebtContainer({ debtData, debtType }) {
     }
     
     return (
-        <div onTransitionEnd={handleMaximizedAnimationEnd} className={`${maximized ? 'w-full' : 'w-96'} duration-200 overflow-hidden`}>
+        <div onTransitionEnd={handleMaximizedAnimationEnd} className={`${maximized ? 'w-full' : 'sm:w-96 w-[99%]'} duration-200 overflow-hidden`}>
             <Card>
                 <div className="p-2 flex flex-col">
                     <div className="w-full text-lg flex h-10">
@@ -162,7 +162,7 @@ function DebtContainer({ debtData, debtType }) {
 
                 </div>
             </Card>
-        </div >
+        </div>
     );
 }
 

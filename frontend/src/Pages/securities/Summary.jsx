@@ -13,7 +13,7 @@ function Summary({ totalOwned, totalValue }) {
         <Card>
             <div className="flex flex-col gap-3 p-2">
 
-                <div className="text-lg pl-1">
+                <div className="text-lg">
                     Your investment
                 </div>
                 {
@@ -36,7 +36,7 @@ function Summary({ totalOwned, totalValue }) {
                                 Total value of securities:
                             </div>
                             <div className="flex flex-1 justify-end">
-                                {totalValue && Number(totalValue.toFixed(2)).toLocaleString()} {currency.toUpperCase()}
+                                {totalValue && Number(totalValue.toFixed(0)).toLocaleString()} <div className="text-light-grey pl-2">{currency.toUpperCase()}</div>
                             </div>
                         </div>
                     )

@@ -1,7 +1,7 @@
 function Assets() {
     return (
         <div>
-            Assets
+            (Ass)ets
         </div>
     );
 }

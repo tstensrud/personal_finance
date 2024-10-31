@@ -1,4 +1,4 @@
-import { useContext, useEffect, useState } from "react";
+import { useContext, useEffect, useRef, useState } from "react";
 
 import useUpdateData from "../../hooks/useUpdateData";
 import { GlobalContext } from "../../context/GlobalContext";
@@ -12,6 +12,20 @@ function Currency({ currentCurrency, currentUser, refetch }) {
     const { data, setData, loading, error, response, handleSubmit } = useUpdateData(currentUser ? `/account/set_currency/${currentUser.uid}/` : null);
 
     const [showDropdown, setShowDropdown] = useState(false);
+    const dropdownRef = useRef(null);
+
+    useEffect(() => {
+        const handleClickOutsideContainer = (e) => {
+            if (dropdownRef.current && !dropdownRef.current.contains(e.target)) {
+                setShowDropdown(false);
+            }
+        }
+        document.addEventListener('mousedown', handleClickOutsideContainer);
+
+        return () => {
+            document.removeEventListener('mousedown', handleClickOutsideContainer);
+        }
+    },[])
 
     useEffect(() => {
         if (data) {
@@ -38,7 +52,7 @@ function Currency({ currentCurrency, currentUser, refetch }) {
     }
 
     return (
-        <div className="w-full relative text-sm">
+        <div ref={dropdownRef} className="w-full sm:w-56 relative text-sm">
 
             <div onClick={() => setShowDropdown(!showDropdown)} className="flex border rounded-lg border-grey-border-color pl-2 w-full h-8 bg-secondary-color hover:border-accent-color-main focus:border-accent-color-main outline-none">
                 <div className="h-full items-center flex">

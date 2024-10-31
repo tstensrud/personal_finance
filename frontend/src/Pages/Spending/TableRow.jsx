@@ -99,7 +99,7 @@ function TableRow({ expense, percentage, borderTop, editable, data, refetch }) {
 
     return (
         <div className="flex flex-col text-sm">
-            <div onClick={editable ? handleOpenOptions : null} className={`flex cursor-pointer w-full h-8 items-center  ${!borderTop && 'hover:bg-accent-color-main-faded'} ${(borderTop || showOptions) && 'border-t border-grey-border-color'}`}>
+            <div onClick={editable ? handleOpenOptions : null} className={`flex cursor-pointer w-full h-8 items-center  ${!borderTop && 'hover:bg-table-hover'} ${(borderTop || showOptions) && 'border-t border-grey-border-color'}`}>
                 <div className="flex items-center h-full pl-2">
                     {data?.type_name}
                 </div>

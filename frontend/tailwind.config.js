@@ -10,16 +10,15 @@ export default {
       'secondary-color': "#11121a",
       'tertiary-color': "#11121a",
       'tertiary-color-faded': "#202933",
-      "accent-color-main": "#5e63ff",
-      'accent-color-main-faded': '#222533',
+      "accent-color-main": "#9dfb56",
+      'accent-color-main-faded': '#374030',
       "accent-color-secondary": "#7E67F6",
       "accent-color-secondary-faded": "#37305c",
       'grey': "#2C2C2C",
       'grey-opacity': '#2c2c2c3b',
       'grey-border-color': "rgb(43, 53, 64)",
-      'light-grey': "#b0b3c1"
-
-
+      'light-grey': "#b0b3c1",
+      'table-hover': '#202933'
     },
     extend: {
       fontFamily: {
