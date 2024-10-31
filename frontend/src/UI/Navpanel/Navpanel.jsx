@@ -26,7 +26,7 @@ function NavPanel({ showMenu, setShowMenu, setActiveIndex, activeIndex }) {
     ];
 
     return (
-        <div className="flex sm:flex-col flex-row w-full h-full border-r border-grey-border-color overflow-y-auto">
+        <div className="flex sm:flex-col flex-row w-full h-full border-r border-grey-border-color overflow-y-auto ">
 
             <div className="hidden sm:flex duration-200 pt-2 items-end ">
                 <CollapseMenuItem showMenu={showMenu} setShowMenu={setShowMenu} />

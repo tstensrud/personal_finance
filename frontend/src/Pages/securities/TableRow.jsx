@@ -73,7 +73,7 @@ function TableRow({ data, refetch, currencyConversion }) {
 
 
     return (
-        <div onClick={handleShowOptionsClick} className={`cursor-pointer flex-col justify-center text-sm border-b border-grey-border-color w-full bg-tertiary-color ${!showOptions && 'hover:bg-table-hover'} `}>
+        <div onClick={handleShowOptionsClick} className={`cursor-pointer flex-col justify-center text-sm border-b border-grey-border-color w-full bg-secondary-color ${!showOptions && 'hover:bg-table-hover'} `}>
             <div className="flex">
                 <div className="flex items-center w-[10%] h-10 justify-start pl-5">
                     {data?.server_data?.ticker.toUpperCase()}
@@ -84,7 +84,7 @@ function TableRow({ data, refetch, currencyConversion }) {
                 <div className="flex items-center w-1/2 sm:w-[20%] h-10 justify-center">
                     {
                         editOpen ? (
-                            <input onChange={(e) => setUpdateData({ quantity: e.target.value })} className="h-[90%] w-full rounded-lg border border-grey-border-color bg-tertiary-color pl-3 outline-none hover:border-accent-color-main focus:border-accent-color-main" placeholder='New quantity' required />
+                            <input onChange={(e) => setUpdateData({ quantity: e.target.value })} className="h-[90%] w-full rounded-lg border border-grey-border-color bg-secondary-color pl-3 outline-none hover:border-accent-color-main focus:border-accent-color-main" placeholder='New quantity' required />
                         ) : (
                             <>
                                 {data?.server_data?.quantity}

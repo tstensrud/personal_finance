@@ -52,7 +52,7 @@ function Layout({ children }) {
 
             <div className="flex flex-col flex-1 rounded-lg text-primary-color">
                 <PageHeader activeIndex={activeIndex} setActiveIndex={setActiveIndex} />
-                <main className="flex flex-col w-full h-full flex-wrap p-5">
+                <main className="flex flex-col w-full h-full flex-wrap p-5 bg-gradient-to-tr">
                     <Outlet>
                         {children}
                     </Outlet>

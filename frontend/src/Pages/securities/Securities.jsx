@@ -44,7 +44,7 @@ function Stocks() {
                     <Summary totalValue={data?.totals?.total_value * currencyConversion} totalOwned={data?.totals?.total_companies_owned} />
                 </div>
             </div>
-            <div className="flex text-light-grey justify-center border-b border-grey-border-color w-full bg-tertiary-color pb-2">
+            <div className="flex text-light-grey justify-center border-b border-grey-border-color w-full bg-secondary-color pb-2">
                 <div className="flex items-end w-[10%] h-20 justify-start pl-5">
                     Ticker
                 </div>

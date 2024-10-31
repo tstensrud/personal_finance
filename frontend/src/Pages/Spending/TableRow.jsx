@@ -126,7 +126,7 @@ function TableRow({ expense, percentage, borderTop, editable, data, refetch }) {
 
             </div>
             <DropdownMenu showVariable={showOptions}>
-                <div className="flex p-2 bg-tertiary-color w-full justify-center gap-3 items-center border-b border-b-tertiary-color-faded">
+                <div className="flex p-2 bg-secondary-color w-full justify-center gap-3 items-center border-b border-b-grey-border-color">
                         <DeleteButton loading={deleteLoading} onClick={handleDeleteClick} />
                         <CloseButton onClick={handleCloseClick} />
                         {

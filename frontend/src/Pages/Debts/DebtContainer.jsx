@@ -86,8 +86,8 @@ function DebtContainer({ debtData, debtType }) {
         <div onTransitionEnd={handleMaximizedAnimationEnd} className={`${maximized ? 'w-full' : 'sm:w-96 w-[99%]'} duration-200 overflow-hidden`}>
             <Card>
                 <div className="p-2 flex flex-col">
-                    <div className="w-full text-lg flex h-10">
-                        <div className="flex h-full items-center">
+                    <div onClick={handleMaximize} className="group cursor-pointer w-full text-lg flex h-7">
+                        <div className="flex h-full">
                             {
                                 debtTypes.map(item => {
                                     if (item.type === debtType) {
@@ -98,7 +98,7 @@ function DebtContainer({ debtData, debtType }) {
                                 })
                             }
                         </div>
-                        <div className={`flex pl-3 items-center h-full`}>
+                        <div className={`flex pl-3 h-full`}>
                             {
                                 debtTypes.map(item => {
                                     if (item.type === debtType) {
@@ -110,7 +110,7 @@ function DebtContainer({ debtData, debtType }) {
                             }
                         </div>
                         <div className="flex flex-1 h-full justify-end">
-                            <div onClick={handleMaximize}>
+                            <div>
                                 {
                                     maximized ? <MinimizeIcon dimensions={20} /> : <MaximizeIcon dimensions={20} />
                                 }
