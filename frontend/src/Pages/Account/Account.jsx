@@ -1,25 +1,16 @@
-import { useContext, useEffect } from "react";
+import { useContext, useEffect, useState } from "react";
 import { AuthContext } from "../../context/AuthContext";
 
 import { GlobalContext } from "../../context/GlobalContext";
 import useFetch from "../../hooks/useFetch";
 
 import ChangePassword from "./ChangePassword";
+import Currency from "./Currency";
 
 function Account() {
     const { currentUser} = useContext(AuthContext);
-    const { currencyy, setCurrency } = useContext(GlobalContext);
 
-    const { data, loading, error } = useFetch(`/account/get/${currentUser.uid}/`);
-
-    useEffect(() => {
-        if (data?.success) {
-            const userCurrency = data?.data?.user_data?.currency;
-            if (currencyy !== userCurrency) {
-                setCurrency(userCurrency);
-            }
-        }
-    },[data]);
+    const { data, loading, error, refetch } = useFetch(`/account/get/${currentUser.uid}/`);
 
     return (
         <div className="flex flex-col w-full pt-5">
@@ -64,7 +55,9 @@ function Account() {
                         
                         <div className="flex">
                             <div className="w-36 text-light-grey">Currency:</div>
-                            <div>{data?.data?.user_data.currency.toUpperCase()}</div>
+                            <div className="w-36 pb-1 pt-1">
+                                <Currency refetch={refetch} currentUser={currentUser} currentCurrency={data?.data?.user_data?.currency} />
+                            </div>
                         </div>
 
                         <div className="flex">

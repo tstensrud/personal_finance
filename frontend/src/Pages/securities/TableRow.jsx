@@ -12,7 +12,7 @@ import UpdateButton from '../../ui/formcomponents/UpdateButton.jsx';
 import ErrorIcon from '../../assets/ErrorIcon.jsx'
 
 
-function TableRow({ data, refetch }) {
+function TableRow({ data, refetch, currencyConversion }) {
     const [showOptions, setShowOptions] = useState(false);
     const [editOpen, setEditOpen] = useState(false);
     const { currency } = useContext(GlobalContext);
@@ -38,6 +38,9 @@ function TableRow({ data, refetch }) {
     useEffect(() => {
         if (updateResponse?.success) {
             refetch();
+            setUpdateData({});
+            setEditOpen(false);
+            setShowOptions(false);
         }
     }, [updateResponse]);
 
@@ -68,6 +71,7 @@ function TableRow({ data, refetch }) {
         }
     }
 
+    
     return (
         <div onClick={handleShowOptionsClick} className={`cursor-pointer flex-col justify-center text-sm border-b border-grey-border-color w-full bg-tertiary-color ${!showOptions && 'hover:bg-accent-color-main-faded'} `}>
             <div className="flex">
@@ -89,7 +93,7 @@ function TableRow({ data, refetch }) {
                     }
                 </div>
                 <div className="hidden sm:flex sm:w-[20%] items-center h-10 justify-center">
-                    {data?.closing_value && Number(data?.closing_value.toFixed(2)).toLocaleString()} {currency.toUpperCase()}
+                    {data?.closing_value && Number((data?.closing_value * currencyConversion).toFixed(2)).toLocaleString()} {currency.toUpperCase()}
                 </div>
                 <div className="flex items-center justify-end w-[40%] sm:w-[20%] h-10 pr-5">
                     {data?.closing_value && data?.server_data && Number((data?.closing_value * data?.server_data?.quantity).toFixed(2)).toLocaleString()} {currency.toUpperCase()}

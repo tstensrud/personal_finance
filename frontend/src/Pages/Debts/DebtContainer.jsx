@@ -135,11 +135,11 @@ function DebtContainer({ debtData, debtType }) {
                             </div>
                         </form>
 
-                        <div className="w-full text-sm pt-5">
+                        <div className="w-full text-sm pt-5 max-h-80 overflow-y-auto">
                             <table className="w-full">
                                 <thead>
                                     <tr className="text-light-grey h-8">
-                                        <th>
+                                        <th className="text-start pl-2">
                                             Date
                                         </th>
                                         <th>Value</th>

@@ -1,4 +1,3 @@
-import json
 from firebase_admin import auth
 from flask import Blueprint, jsonify, request
 from functools import wraps
@@ -32,3 +31,15 @@ def get_account(uuid: str):
         user_data['user_data'] = user.to_json()
         return jsonify({"success": True, "data": user_data})
     return jsonify({"success": False, "message": "User not found"})
+
+@account_bp.route('/set_currency/<uuid>/', methods=['PATCH'])
+@firebase_auth_required
+def set_currency(uuid: str):
+    data = request.get_json()
+    if data:
+        currency = data['currency']
+        new_currency = dbo.set_currency(uuid=uuid, currency=currency)
+        if new_currency:
+            return jsonify({"success": True})
+        return jsonify({"success": False, "message": "Could not change currency"})
+    return jsonify({"success": False, "message": "No data received"})

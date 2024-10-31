@@ -1,7 +1,7 @@
 function DebtTableRow({ date, value }) {
     return (
-        <tr className="border-t border-grey-border-color h-8">
-            <td className="text-center">
+        <tr className="border-t border-grey-border-color h-8 hover:bg-accent-color-main-faded">
+            <td className="text-start pl-2">
                 {date}
             </td>
             <td className="text-center">{value.toLocaleString()}</td>

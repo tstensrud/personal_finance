@@ -8,10 +8,19 @@ import PageHeader from './pageheader/PageHeader';
 import LoadingBar from './widgets/LoadingBar.jsx';
 
 function Layout({ children }) {
-    const { globalLoading } = useContext(GlobalContext);
+    const { globalLoading, setCurrency } = useContext(GlobalContext);
     const [showMenu, setShowMenu] = useState(true);
     const [activeIndex, setActiveIndex] = useState(0);
     const menuRef = useRef(null);
+    
+    useEffect(() => {
+        const localStorageCurrency = localStorage.getItem('currency');
+        if (localStorageCurrency) {
+            setCurrency(localStorageCurrency)
+        } else {
+            localStorage.setItem("currency", "usd");
+        }
+    },[]);
 
     return (
         <div className="flex flex-row w-full h-full bg-secondary-color">

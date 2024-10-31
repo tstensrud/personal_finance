@@ -8,3 +8,14 @@ def get_user(uuid: str) -> models.users:
     if user:
         return user
     return None
+
+def set_currency(uuid: str, currency: str) -> bool:
+    user = get_user(uuid=uuid)
+    user.currency = currency
+    try:
+        db.session.commit()
+        return True
+    except Exception as e:
+        log(f"Could not set currency: {e}")
+        db.session.rollback()
+        return False
