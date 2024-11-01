@@ -3,6 +3,7 @@ import { useState, useContext, useEffect } from 'react';
 import { GlobalContext } from '../../context/GlobalContext.jsx';
 
 // components
+import CardBgColor from '../../ui/CardBgColor.jsx';
 import Card from "../../ui/Card.jsx";
 import TableRow from './TableRow.jsx';
 import InputRow from "./InputRow.jsx";
@@ -33,7 +34,7 @@ function IncomeTable({ currentUser, setTotalIncome, incomeData, refetch }) {
     }
 
     return (
-        <Card>
+        <CardBgColor>
             <div className={`flex w-full ${!showInputRow && 'border-b'} border-grey-border-color h-10 items-center`}>
                 <div className="pl-2 ">Source of income</div>
                 <div className="pr-2 flex flex-1 justify-end">
@@ -68,7 +69,7 @@ function IncomeTable({ currentUser, setTotalIncome, incomeData, refetch }) {
 
                 </div>
             </div>
-        </Card>
+        </CardBgColor>
     );
 }
 

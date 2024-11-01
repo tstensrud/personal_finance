@@ -47,7 +47,7 @@ function AddNewDebt({ debtTypes, currentUser, refetch }) {
 
 
     return (
-        <div className="flex flex-col mb-5 p-2 border border-grey-border-color rounded-lg sm:w-96 w-full">
+        <div className="flex flex-col mb-5 p-2 bg-tertiary-color  border-grey-border-color rounded-lg sm:w-96 w-full">
 
             <div onClick={() => setShowDropdown(!showDropdown)}  className="group cursor-pointer flex w-full h-8 items-center pl-1">
                 <div className="flex h-full items-center">

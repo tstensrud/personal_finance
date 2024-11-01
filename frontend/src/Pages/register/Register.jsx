@@ -50,10 +50,10 @@ function Register() {
     }
 
     return (
-        <div className="flex items-center justify-center w-full h-full bg-gradient-to-tr from-tertiary-color to-secondary-color">
+        <div className="flex sm:items-center justify-center w-full h-full bg-gradient-to-tr from-tertiary-color to-secondary-color">
             <div className="flex flex-col w-[800px] h-[500px] rounded-lg">
 
-                <div className="flex h-10 w-full justify-start text-3xl -tracking-wider">
+                <div className="flex h-10 w-full justify-center sm:justify-start text-3xl -tracking-wider">
                     <div className="flex pl-1 h-full items-center">
                         <AppIcon dimensions={30} />
                     </div>

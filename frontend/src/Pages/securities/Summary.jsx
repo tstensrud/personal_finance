@@ -2,7 +2,7 @@ import { useContext, useEffect, useRef, useState } from 'react';
 
 import { GlobalContext } from '../../context/GlobalContext.jsx';
 
-import Card from '../../ui/Card.jsx';
+import CardBgColor from '../../ui/CardBgColor.jsx';
 import LoadingText from '../../ui/widgets/LoadingText.jsx';
 
 
@@ -10,7 +10,7 @@ function Summary({ totalOwned, totalValue }) {
     const { currency, globalLoading } = useContext(GlobalContext);
 
     return (
-        <Card>
+        <CardBgColor>
             <div className="flex flex-col gap-3 p-2">
 
                 <div className="text-lg">
@@ -42,7 +42,7 @@ function Summary({ totalOwned, totalValue }) {
                     )
                 }
             </div>
-        </Card>
+        </CardBgColor>
     );
 }
 

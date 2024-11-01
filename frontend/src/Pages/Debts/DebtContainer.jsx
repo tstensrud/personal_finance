@@ -4,6 +4,7 @@ import useSubmitData from "../../hooks/useSubmitData.jsx";
 import useFetch from "../../hooks/useFetch.jsx";
 
 import Card from "../../ui/Card.jsx";
+import CardBgColor from "../../ui/CardBgColor.jsx";
 import SummaryRow from './SummaryRow.jsx';
 import DropdownMenu from '../../ui/widgets/DropdownMenu.jsx';
 import DebtTableRow from './DebtTableRow.jsx';
@@ -84,7 +85,7 @@ function DebtContainer({ debtData, debtType }) {
     
     return (
         <div onTransitionEnd={handleMaximizedAnimationEnd} className={`${maximized ? 'w-full' : 'sm:w-96 w-[99%]'} duration-200 overflow-hidden`}>
-            <Card>
+            <CardBgColor>
                 <div className="p-2 flex flex-col">
                     <div onClick={handleMaximize} className="group cursor-pointer w-full text-lg flex h-7">
                         <div className="flex h-full">
@@ -161,7 +162,7 @@ function DebtContainer({ debtData, debtType }) {
                     </DropdownMenu>
 
                 </div>
-            </Card>
+            </CardBgColor>
         </div>
     );
 }

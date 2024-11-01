@@ -13,10 +13,9 @@ function Account() {
     const { data, loading, error, refetch } = useFetch(`/account/get/${currentUser.uid}/`);
 
     return (
-        <div className="flex flex-col w-full pt-5">
+        <div className="flex flex-col w-full">
 
             <div className="flex flex-col w-full sm:w-10/12">
-
                 <div className="flex flex-col sm:flex-row">
                     <div className="w-52 sm:border-r border-grey-border-color">
                         Account info
@@ -44,7 +43,6 @@ function Account() {
                         </div>
                     </div>
                 </div>
-
             </div>
 
             <div className="flex flex-col w-full sm:w-10/12 mt-2">

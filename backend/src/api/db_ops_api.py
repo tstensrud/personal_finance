@@ -1,4 +1,4 @@
-from sqlalchemy import func, and_, distinct, select, update, cast, String
+from sqlalchemy import func, and_, distinct, desc, select, update, cast, String
 from uuid import uuid4
 from .. import models, db
 from .globals import log
@@ -124,6 +124,13 @@ def get_debt_entries(debt_uid: str) -> list[models.debt_entry]:
     entries = db.session.query(models.debt_entry).filter(models.debt_entry.debt_uid == debt_uid).all()
     if entries:
         return entries
+    return None
+
+def get_debt_entry_latest(debt_uid: str) -> models.debt_entry:
+    entry = db.session.query(models.debt_entry).filter(models.debt_entry.debt_uid == debt_uid).order_by(
+        models.debt_entry.created_at.desc()).first()
+    if entry:
+        return entry
     return None
 
 ##########################

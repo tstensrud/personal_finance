@@ -7,16 +7,16 @@ export default {
   theme: {
     colors: {
       'primary-color': '#e6e6ef',
-      'secondary-color': "#11121a",
-      'tertiary-color': "#1c1c1d",
+      'secondary-color': "#0c1219",
+      'tertiary-color': "#121c26",
       'tertiary-color-faded': "#202933",
       "accent-color-main": "#9dfb56",
       'accent-color-main-faded': '#374030',
-      "accent-color-secondary": "#7E67F6",
-      "accent-color-secondary-faded": "#37305c",
+      "accent-color-secondary": "#78d3f8",
+      "accent-color-secondary-faded": "#3c697c",
       'grey': "#2C2C2C",
       'grey-opacity': '#2c2c2c3b',
-      'grey-border-color': "rgb(43, 53, 64)",
+      'grey-border-color': "#2b3540",
       'light-grey': "#b0b3c1",
       'table-hover': '#202933'
     },

@@ -64,10 +64,11 @@ function Login() {
     }
 
     return (
-        <div className="flex items-center justify-center w-full h-full bg-gradient-to-tr from-tertiary-color to-secondary-color">
-            <div className="pl-5 flex flex-row w-[800px] h-[500px] rounded-lg">
-                <div className="flex flex-col w-1/2">
-                    <div className="flex h-10 w-full justify-start text-3xl -tracking-wider">
+        <div className="flex sm:items-center justify-center w-full h-full bg-gradient-to-tr from-tertiary-color to-secondary-color">
+            <div className="pl-5 flex flex-col sm:flex-row sm:w-[800px] sm:h-[500px] rounded-lg">
+                <div className="flex flex-col sm:w-1/2 w-full">
+                    
+                    <div className="flex h-10 w-full justify-center sm:justify-start text-3xl -tracking-wider">
                         <div className="flex h-full items-center">
                             <AppIcon dimensions={30} />
                         </div>
@@ -75,13 +76,14 @@ function Login() {
                             Personal finance
                         </div>
                     </div>
+
                     <div className="pt-10">
                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" className="stroke-primary-color stroke-2 fill-none">
                             <polyline points="23 6 13.5 15.5 8.5 10.5 1 18"></polyline>
                             <polyline points="17 6 23 6 23 12"></polyline>
                         </svg>
                     </div>
-                    <div className="text-xl">
+                    <div className="sm:text-xl text-sm">
                         Monthly tracking
                     </div>
                     <div className="text-light-grey">
@@ -92,7 +94,7 @@ function Login() {
                             <path d="M14 9V5a3 3 0 0 0-3-3l-4 9v11h11.28a2 2 0 0 0 2-1.7l1.38-9a2 2 0 0 0-2-2.3zM7 22H4a2 2 0 0 1-2-2v-7a2 2 0 0 1 2-2h3"></path>
                         </svg>
                     </div>
-                    <div className="text-xl">
+                    <div className="sm:text-xl text-sm">
                         It's free
                     </div>
                     <div className="text-light-grey">
@@ -104,7 +106,7 @@ function Login() {
                             <path d="M16 12v1a3 3 0 0 0 6 0v-1a10 10 0 1 0-3.92 7.94"></path>
                         </svg>
                     </div>
-                    <div className="text-xl">
+                    <div className="sm:text-xl text-sm">
                         Not registered?
                     </div>
                     <div className="text-light-grey">
@@ -112,9 +114,9 @@ function Login() {
                     </div>
                 </div>
 
-                <div className="flex flex-col w-1/2 h-full items-center justify-center">
-                    <form>
-                        <div className="flex flex-col h-full items-center justify-center">
+                <div className="flex flex-col sm:w-1/2 w-full h-full sm:items-center sm:justify-center">
+                    <div className="flex flex-col h-full w-full sm:items-center sm:justify-center mt-5 sm:mt-0">
+                        <form>
                             <div className="flex">
                                 <input className="border border-grey-border-color text-primary-color bg-secondary-color rounded-lg w-full pt-2 pb-2 pl-5 pr-5 focus:border-accent-color-main focus:outline-none hover:border-accent-color-main" type="text" value={email} onChange={(e) => setEmail(e.target.value)} placeholder="E-mail" />
                                 <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" strokeLinecap="round" strokeLinejoin="round" className="stroke-light-grey stroke-2 fill-none relative right-8 top-3">
@@ -153,8 +155,8 @@ function Login() {
                                     }
                                 </div>
                             </div>
-                        </div>
-                    </form>
+                        </form>
+                    </div>
                 </div>
             </div>
         </div>

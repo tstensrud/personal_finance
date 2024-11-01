@@ -137,6 +137,11 @@ def get_debts(uuid: str):
             current_debt_data = {}
             current_debt_data['debt_data'] = debt_item.to_json()
             current_debt_data['category_data'] = type_item.to_json()
+            latest_debt_entry = dbo.get_debt_entry_latest(debt_uid=debt_item.uid)
+            if latest_debt_entry:
+                current_debt_data['debt_data']['latest_value'] = latest_debt_entry.value
+            else:
+                current_debt_data['debt_data']['latest_value'] = debt_item.value
             debt_data[debt_item.uid] = current_debt_data
         return jsonify({"success": True, "data": debt_data})
     return jsonify({"success": False, "message": "No debts registered"})
@@ -187,7 +192,7 @@ def get_debt_entries(debt_uid: str):
             entries_data[entry.uid] = entry.to_json()
         return jsonify({"success": True, "data": entries_data})
     return jsonify({"success": False, "message": "No entries found"})
-    
+
 ##########################
 # SPENDING PLAN / BUDGET #
 ##########################

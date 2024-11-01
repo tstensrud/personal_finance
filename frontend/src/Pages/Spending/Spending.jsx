@@ -4,6 +4,7 @@ import { AuthContext } from "../../context/AuthContext";
 import useFetch from "../../hooks/useFetch.jsx";
 import { GlobalContext } from '../../context/GlobalContext.jsx';
 
+import CardBgColor from '../../ui/CardBgColor.jsx';
 import Card from "../../ui/Card";
 import ExpensesTable from "./ExpensesTable";
 import IncomeTable from "./IncomeTable";
@@ -84,7 +85,7 @@ function Spending() {
                     Monthly status
                 </div>
                 <div className="w-full">
-                    <Card>
+                    <CardBgColor>
                         <div className="p-2 flex w-full border-b border-grey-border-color h-10 items-center text-light-grey">
                             Summary
                         </div>
@@ -102,7 +103,7 @@ function Spending() {
                             <SummaryRow text="Debts" value={((debts / totalIncome) * 100).toFixed(1)} tail="%" />
                             <SummaryRow text="Living expenses" value={((totalLiving / totalIncome) * 100).toFixed(1)} tail="%" />
                         </div>
-                    </Card>
+                    </CardBgColor>
                 </div>
 
             </div>
