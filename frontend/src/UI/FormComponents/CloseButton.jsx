@@ -5,7 +5,7 @@ function CloseButton({ onClick }) {
         onClick();
     }
     return (
-        <button onClick={handleClick} className="pt-1 pb-1 w-20 h-8 border border-grey-border-color rounded-full hover:border-accent-color-main hover:bg-accent-color-main-faded">
+        <button onClick={handleClick} className="pt-1 pb-1 w-20 h-8 bg-secondary-color border border-grey-border-color rounded-full hover:border-accent-color-main hover:bg-accent-color-main-faded">
             <div className="flex h-full items-center pl-2">
                 <div>
                     <svg xmlns="http://www.w3.org/2000/svg" width={15} height={15} viewBox="0 -960 960 960" strokeLinecap="round" strokeLinejoin="round" className={`fill-light-grey group-hover:fill-primary-color  duration-100`}>

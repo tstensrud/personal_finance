@@ -44,7 +44,7 @@ function AddSecurity({ currentUser, refetch }) {
 
     return (
         <Card>
-            <form>
+            <form className="bg-tertiary-color">
                 <div className="flex flex-col gap-3 p-2">
                     <div className="text-lg pl-1">
                         Add security

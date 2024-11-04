@@ -8,7 +8,7 @@ function UpdateButton({ onClick, loading }) {
     }
     
     return (
-        <button onClick={handleClick} className="pt-1 pb-1 w-20 h-8 border border-grey-border-color rounded-full hover:border-accent-color-main hover:bg-accent-color-main-faded">
+        <button onClick={handleClick} className="pt-1 pb-1 w-20 h-8 border bg-secondary-color border-grey-border-color rounded-full hover:border-accent-color-main hover:bg-accent-color-main-faded">
             <div className="flex h-full items-center pl-2">
                 <div>
                     <svg xmlns="http://www.w3.org/2000/svg" width={15} height={15} viewBox="0 0 24 24" className="stroke-primary-color stroke-2">
